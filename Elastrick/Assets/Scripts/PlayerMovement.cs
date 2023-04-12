@@ -159,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().color = Color.green;
         yield return new WaitForSeconds(5f);
-        pO.GetComponent<SpriteRenderer>().color = Color.white;
+        GetComponent<SpriteRenderer>().color = Color.white;
         //BUG: WONT CHANGE COLOR BACK TO WHITE
         // MAYBE BECAUSE THE OBJECT OF POWERUP IS GONE?
         //BUG: COLLISIONS NOT WORKING AND CAN BOUNCE ON AIR
