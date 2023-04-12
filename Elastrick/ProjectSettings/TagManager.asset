@@ -4,13 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-<<<<<<< HEAD
   - Wall
-=======
-  - Obstacles
-  - Checkpoints
-  - PowerUps
->>>>>>> d17c69335963eaebaec1c76c217b465650151f92
+  - Powerup
+  - alexkoeberl
   layers:
   - Default
   - TransparentFX
@@ -47,13 +43,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Background
-    uniqueID: 1512989621
-    locked: 0
-  - name: Obstacles
-    uniqueID: 1072514721
-    locked: 0
-  - name: Player
-    uniqueID: 2550308385
     locked: 0

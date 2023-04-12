@@ -3,9 +3,11 @@
 // Author :            Jacob Lee
 // Creation Date :     April 10th, 2023
 //
-// Behavior for the powerup game objects. On collision, generates a random
-powerup using a switch case and random.range. Powerups have different effects.
+// Behavior on the power up game objects. Tells the Game Manager what player
+interacted with the power up and who to apply the power up to. Then safely
+destroys the game object silently and hidden.
 *****************************************************************************/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,29 +15,21 @@ using UnityEngine;
 public class PowerupBehavior : MonoBehaviour
 {
     private PlayerMovement pM;
+    private PowerupManager pUM;
 
     /// <summary>
-    /// Randomizes the item internally using Random.Range.
+    /// Links the game manager to this script so it can pass references.
     /// </summary>
-    /// <returns></returns>
-    public int PickPowerup()
+    private void Start()
     {
-        return Random.Range(1, 2);
+        pUM = GameObject.Find("GameManager").GetComponent<PowerupManager>();
     }
 
-    /// <summary>
-    /// not functional at the moment.
-    /// </summary>
-    /// <param name="pm"></param>
-    private void UpDamage(PlayerMovement pm)
-    {
-        //playerDamage++
-        Debug.Log("Well, nothing happened.");
-    }
 
     /// <summary>
-    /// On Collision (Trigger), start the powerup sequence via if statements
-    /// and switch statements
+    /// On Collision (Trigger), start the powerup sequence. Gives references
+    /// of which player hit the power up and who to give the powerup to.
+    /// Then, safely destroys the powerup hidden from the gameview.
     /// </summary>
     /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
@@ -47,38 +41,20 @@ public class PowerupBehavior : MonoBehaviour
             // If you have a powerup, you can't pick it up.
             if (pM.hasAPowerUp == false)
             {
-                StartCoroutine(timeForRoulette());
+                // The player in question is the one who collided with it.
+                pUM.playerInQuestion = collision.gameObject;
+
+                // Starts the powerup coroutine.
+                StartCoroutine(pUM.timeForRoulette());
+
+                // Visually, hides the power up.
+                GetComponent<BoxCollider2D>().enabled = false;
+                GetComponent<SpriteRenderer>().enabled = false;
+
+                // Waits a while to properly and safely deload the used
+                // power ups.
+                Destroy(gameObject, 8f);
             }
         }
     }
-
-    /// <summary>
-    /// Visually, the player sees the item roulette, but internally, it adds
-    /// aritifical time to let the graphics catch up.
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator timeForRoulette()
-    {
-        this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-        pM.hasAPowerUp = true;
-
-        yield return new WaitForSeconds(4.25f);
-
-        switch (PickPowerup())
-        {
-            case 1:
-                pM.StartCoroutine(pM.SpeedInc(2, 5));
-                StartCoroutine(pM.ColorChangeForTheAlpha());
-                break;
-            case 2:
-                UpDamage(pM);
-                break;
-        }
-
-        Debug.Log("you've been sped up!");
-        pM.hasAPowerUp = false;
-        Destroy(gameObject);
-    }
-
 }

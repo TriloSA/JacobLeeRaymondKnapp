@@ -8,6 +8,8 @@ player actions. That rotation is saved and referenced with the launch, as it
 adds a force to move towards the selected direction of where the ball is
 facing, primarilly shown visually by the pointer that rotates around the
 player as a child object.
+
+Also harbors the enumerator to change colors FOR THE ALPHA. Not permanent!
 *****************************************************************************/
 
 using System.Collections;
@@ -110,7 +112,13 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("collided!");
+        // uhh mr alex.
+        if (collision.gameObject.CompareTag("alexkoeberl"))
+        {
+            Debug.Log("hi i am alex koeberl, and you're watching the disney channel");
+            StartCoroutine(ColorChangeForTheAlpha());
+        }
+
         // If you cannot launch, stop your movement as you've likely hit a
         // wall or something.
         if (!canLaunch && check == false)
@@ -151,19 +159,23 @@ public class PlayerMovement : MonoBehaviour
         launchVelocity /= amount;
     }
 
+    //////////////////////////////////////////////////////////////////////////
     /// <summary>
-    /// For the alpha sake, this is a visual indicator of how long you got your powerup for.
+    /// For the alpha sake, this is a visual indicator of how long you got
+    /// your powerup for.
     /// </summary>
     /// <returns></returns>
     public IEnumerator ColorChangeForTheAlpha()
     {
+        Debug.Log("hello my name is alexiplier");
         GetComponent<SpriteRenderer>().color = Color.green;
         yield return new WaitForSeconds(5f);
+        Debug.Log("and welcome back to another video of five nights at " +
+        "freddys");
         GetComponent<SpriteRenderer>().color = Color.white;
-        //BUG: WONT CHANGE COLOR BACK TO WHITE
-        // MAYBE BECAUSE THE OBJECT OF POWERUP IS GONE?
+
         //BUG: COLLISIONS NOT WORKING AND CAN BOUNCE ON AIR
         //BUG: PLAYER SLOWS BEFORE HITTING WALL
-
+        
     }
 }
