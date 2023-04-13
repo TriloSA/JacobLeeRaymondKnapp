@@ -18,7 +18,7 @@ public class PlayerBehavior : MonoBehaviour
     {
         GameController gc = FindObjectOfType<GameController>();
 
-        if(collision.gameObject.tag == "Obstacles")
+        if(collision.gameObject.tag == "Obstacle")
         {
             gc.UpdateLives();
         }

@@ -3,21 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
 
 public class GameController : MonoBehaviour
 {
     public TMP_Text livesText;
     public int Lives;
 
-    public GameObject player1;
-
-    public GameObject player2;
-
     // Start is called before the first frame update
     void Start()
     {
-        PlayerInput.Instantiate(player1, 0, null, pairWithDevice: Gamepad.all[0]);
+        
     }
 
     /// <summary>
@@ -31,13 +26,13 @@ public class GameController : MonoBehaviour
 
     }
 
-    public void RespawnPlayer()
-    {
-        if(Lives <= 0)
-        {
+    //public void RespawnPlayer()
+    //{
+        //if(Lives <= 0)
+        //{
 
-        }
-    }
+        //}
+    //}
 
     /// <summary>
     /// for debugging
@@ -46,7 +41,6 @@ public class GameController : MonoBehaviour
     /// </summary>
     void Update()
     {
-
         if (Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();
