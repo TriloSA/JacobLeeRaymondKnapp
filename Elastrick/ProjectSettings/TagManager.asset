@@ -7,6 +7,7 @@ TagManager:
   - Wall
   - Powerup
   - alexkoeberl
+  - Obstacles
   layers:
   - Default
   - TransparentFX
@@ -41,6 +42,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 325033751
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Obstacles
+    uniqueID: 98104987
+    locked: 0
+  - name: platforms
+    uniqueID: 3585464315
+    locked: 0
+  - name: Player
+    uniqueID: 3011367
     locked: 0
