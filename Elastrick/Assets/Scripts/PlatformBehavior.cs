@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlatformBehavior : MonoBehaviour
 {
-    public float TopY = 10f;
-    public float BotY = 0.0f;
+    public float TopY;
+    public float BotY;
 
     public float speed = 2f;
 
