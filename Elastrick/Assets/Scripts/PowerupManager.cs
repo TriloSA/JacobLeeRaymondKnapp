@@ -75,5 +75,3 @@ public class PowerupManager : MonoBehaviour
         Debug.Log("Well, nothing happened.");
     }
 }
-
-//d
