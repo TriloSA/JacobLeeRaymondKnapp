@@ -7,6 +7,8 @@ TagManager:
   - Obstacles
   - Checkpoints
   - PowerUps
+  - Platforms
+  - Goal
   layers:
   - Default
   - TransparentFX
@@ -41,15 +43,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
+  - name: Border
+    uniqueID: 3921346813
     locked: 0
   - name: Background
     uniqueID: 1512989621
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: Obstacles
     uniqueID: 1072514721
     locked: 0
   - name: Player
     uniqueID: 2550308385
+    locked: 0
+  - name: Camera
+    uniqueID: 2036546319
     locked: 0
