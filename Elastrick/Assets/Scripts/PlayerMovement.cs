@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     PlayerActions pActions;
 
     [Header("Linkage")]
-    [SerializeField] private GameObject rotObject;
+    [SerializeField] private Transform rotatePoint;
     [SerializeField] private Rigidbody2D rb2D;
 
     [Header("Launch Check")]
@@ -34,9 +34,14 @@ public class PlayerMovement : MonoBehaviour
     [Header("Speed")]
     [SerializeField] private float launchVelocity = 300f;
 
-    // For stopping on collision.
-    private bool check;
+    [Header("Color Link")]
+    [SerializeField] private GameObject colorLink;
 
+    [Header("Stop Collision Check Bool")]
+    // For stopping on collision.
+    [SerializeField] private bool stopColl;
+
+    [Header("Anti-Powerup Spam Check")]
     // For anti powerup spam protection.
     public bool hasAPowerUp;
 
@@ -88,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
     private void RotatePlayer()
     {
         float angle = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        rotatePoint.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     /// <summary>
@@ -101,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
         {
             canLaunch = false;
             //Debug.Log("Boing!");
-            rb2D.AddForce(rotObject.transform.right * launchVelocity);
+            rb2D.AddForce(rotation * launchVelocity, ForceMode2D.Impulse);
             isMoving = true;
         }
     }
@@ -121,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
 
         // If you cannot launch, stop your movement as you've likely hit a
         // wall or something.
-        if (!canLaunch && check == false)
+        if (!canLaunch && stopColl == false)
         {
             StartCoroutine(StopMovement());
         }
@@ -134,11 +139,11 @@ public class PlayerMovement : MonoBehaviour
     /// <returns></returns>
     IEnumerator StopMovement()
     {
-        check = true;
+        stopColl = true;
         rb2D.velocity = Vector2.zero;
         yield return new WaitForSeconds(0.4f);
         canLaunch = true;
-        check = false;
+        stopColl = false;
         isMoving = false;
     }
 
@@ -168,14 +173,10 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator ColorChangeForTheAlpha()
     {
         Debug.Log("hello my name is alexiplier");
-        GetComponent<SpriteRenderer>().color = Color.green;
+        colorLink.GetComponent<SpriteRenderer>().color = Color.yellow;
         yield return new WaitForSeconds(5f);
         Debug.Log("and welcome back to another video of five nights at " +
         "freddys");
-        GetComponent<SpriteRenderer>().color = Color.white;
-
-        //BUG: COLLISIONS NOT WORKING AND CAN BOUNCE ON AIR
-        //BUG: PLAYER SLOWS BEFORE HITTING WALL
-        
+        colorLink.GetComponent<SpriteRenderer>().color = Color.green;
     }
 }
