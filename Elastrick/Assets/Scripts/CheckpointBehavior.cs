@@ -23,7 +23,7 @@ public class CheckpointBehavior : MonoBehaviour
         // Safety measure.
         if (collision.gameObject.CompareTag("Player"))
         {
-            //Debug.Log("i did something!");
+            Debug.Log("Checkpoint Unlocked!");
             // newSpawn's values is now the same as the checkpoint's.
             Vector3 newSpawn = this.gameObject.transform.position;
 
@@ -34,5 +34,8 @@ public class CheckpointBehavior : MonoBehaviour
             collision.gameObject.GetComponent<PlayerBehavior>().yVal = 
             newSpawn.y;
         }
+
+        // NOTE, THIS AND RESPAWN MECHANIC IS PRETTY MUCH FOR ONE PLAYER;
+        // IF THERE ARE 2 PLAYERS, BOTH WILL RESPAWN INSIDE EACH OTHER.
     }
 }
