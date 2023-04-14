@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour
     /// if escape key is clicked, the app should close
     /// if the r key is clicked, the game should load the main menu
     /// </summary>
-    void Update()
+/*    void Update()
     {
         if (Input.GetKey(KeyCode.Escape))
         {
@@ -50,5 +50,5 @@ public class GameController : MonoBehaviour
             Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(0);
         }
-    }
+    }*/
 }
