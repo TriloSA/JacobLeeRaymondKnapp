@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb2D;
 
     [Header("Launch Check")]
-    [SerializeField] private bool canLaunch = true;
+    public bool canLaunch = true;
 
     [Header("Moving Check")]
     public bool isMoving;

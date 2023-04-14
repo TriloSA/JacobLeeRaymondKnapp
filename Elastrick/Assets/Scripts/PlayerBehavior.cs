@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class PlayerBehavior : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float xVal = -16f;
+    public float yVal = -7f;
+    public int lives = 3;
+
+    public void Start()
     {
-        
+        xVal = -16f;
+        yVal = -7f;
     }
 
     /// <summary>
@@ -16,22 +20,37 @@ public class PlayerBehavior : MonoBehaviour
     /// </summary>
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        GameController gc = FindObjectOfType<GameController>();
-
-        if(collision.gameObject.tag == "Obstacle")
+        if (collision.gameObject.CompareTag("Obstacles"))
         {
-            gc.UpdateLives();
-        }
-
-        if(collision.gameObject.tag == "Player")
-        {
-            gc.UpdateLives();
+            lives--;
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        if(lives <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        this.gameObject.GetComponent<PlayerMovement>().canLaunch = true;
+        this.gameObject.GetComponent<PlayerMovement>().isMoving = false;
+        this.gameObject.GetComponent<PlayerMovement>().hasAPowerUp = false;
+
+        lives = 3;
+
+        if (xVal != -16f && yVal != -7f)
+        {
+            gameObject.transform.position = new Vector2(xVal, yVal);
+        }
+        else
+        {
+            gameObject.transform.position = new Vector2(-16f, -7f);
+        }
         
     }
+
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2203061072917853043}
   - component: {fileID: 2203061072917853040}
   - component: {fileID: 2242724697145675469}
+  - component: {fileID: 4947812346578948687}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -93,6 +94,19 @@ MonoBehaviour:
   colorLink: {fileID: 5087738146429223433}
   stopColl: 0
   hasAPowerUp: 0
+--- !u!114 &4947812346578948687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2203061072917853041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d722cb5f7070d1c4fbc0907d8cbdf437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lives: 3
 --- !u!1 &2203061073453901381
 GameObject:
   m_ObjectHideFlags: 0
