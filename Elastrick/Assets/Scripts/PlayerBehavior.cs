@@ -26,14 +26,33 @@ public class PlayerBehavior : MonoBehaviour
     public GameObject twoHPValue;
     public GameObject oneHPValue;
 
+    [Header("Invinciblity Frames")]
+    public bool isInvincible = false;
+
+    [Header("Determining of Player 1")]
+    public bool isPlayer1 = false;
+    public static bool hasPlayer1 = false;
 
     /// <summary>
     /// Set's the default spawn values upon spawn.
     /// </summary>
     public void Start()
     {
-        xVal = -16f;
+        // Default unchanged values for spawn.
+        xVal = -15f;
         yVal = -7f;
+
+        // First player instantiated is Player 1. Everything that happens here
+        // should only apply to player 1.
+        if (!hasPlayer1)
+        {
+            xVal += -2f;
+            isPlayer1 = true;
+            hasPlayer1 = true;
+        }
+
+        // Their position is now xVal and yVal.
+        transform.position = new Vector2(xVal, yVal);
     }
 
     /// <summary>
@@ -42,19 +61,24 @@ public class PlayerBehavior : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D collision)
     {
         // If you hit an obstacle, lose a life.
-        if (collision.gameObject.CompareTag("Obstacles") || 
-            collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Obstacles") && !isInvincible)
         {
+            // Player takes damage.
             lives--;
+
+            GiveIFrames();
         }
         
         // If you hit a player while moving, make them lose a life.
         // Only the player moving will not get hit, in order to serve as hit
         // priority and to NOT make both players take damage.
         if (collision.gameObject.CompareTag("Player") && 
-            this.gameObject.GetComponent<PlayerMovement>().isMoving == true)
+            this.gameObject.GetComponent<PlayerMovement>().isMoving == true &&
+            !collision.gameObject.GetComponent<PlayerBehavior>().isInvincible)
         {
             collision.gameObject.GetComponent<PlayerBehavior>().lives--;
+
+            collision.gameObject.GetComponent<PlayerBehavior>().GiveIFrames();
         }
     }
     
@@ -99,24 +123,39 @@ public class PlayerBehavior : MonoBehaviour
     /// </summary>
     private void DieAndRespawn()
     {
+        GiveIFrames();
+
         this.gameObject.GetComponent<PlayerMovement>().canLaunch = true;
         this.gameObject.GetComponent<PlayerMovement>().isMoving = false;
         this.gameObject.GetComponent<PlayerMovement>().hasAPowerUp = false;
 
         // Resets your HP internally and visually.
         lives = 3;
-
-        // If the value isn't spawn's values, spawn there.
-        if (xVal != -16f && yVal != -7f)
-        {
-            gameObject.transform.position = new Vector2(xVal, yVal);
-        }
-        // Else, spawn at spawn values.
-        else
-        {
-            gameObject.transform.position = new Vector2(-16f, -7f);
-        }
         
+        // Respawn the player back to their original psoiton (whether it be
+        // spawn or their checkpoint location).
+        gameObject.transform.position = new Vector2(xVal, yVal);
     }
 
+    /// <summary>
+    /// Sets boolean back to making the player be able to be hittable after X
+    /// amount of time.
+    /// </summary>
+    public void IsHittable()
+    {
+        Debug.Log("You CAN get hurt.");
+        isInvincible = false;
+    }
+
+    /// <summary>
+    /// Makes the player invincible and runs IsHittable after 2 seconds to
+    /// revert IFrames.
+    /// </summary>
+    public void GiveIFrames()
+    {
+        Debug.Log("you can't get hurt!");
+        // Player gets Immunity frames upon respawn.
+        isInvincible = true;
+        Invoke("IsHittable", 2f);
+    }
 }

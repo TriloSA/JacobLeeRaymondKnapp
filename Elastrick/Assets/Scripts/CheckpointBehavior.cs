@@ -30,6 +30,17 @@ public class CheckpointBehavior : MonoBehaviour
             this.gameObject.GetComponent<Collider2D>().enabled = false;
             // newSpawn's values is now the same as the checkpoint's.
             Vector3 newSpawn = this.gameObject.transform.position;
+            
+            // If they are player 1, spawn them on the left of the check point.
+            // Otherwise, spawn them on the right.
+            if (collision.gameObject.GetComponent<PlayerBehavior>().isPlayer1)
+            {
+                newSpawn = new Vector3(newSpawn.x - 1, newSpawn.y, newSpawn.z);
+            }
+            else
+            {
+                newSpawn = new Vector3(newSpawn.x + 1, newSpawn.y, newSpawn.z);
+            }
 
             // Value X
             collision.gameObject.GetComponent<PlayerBehavior>().xVal = 
@@ -38,8 +49,5 @@ public class CheckpointBehavior : MonoBehaviour
             collision.gameObject.GetComponent<PlayerBehavior>().yVal = 
             newSpawn.y;
         }
-
-        // NOTE, THIS AND RESPAWN MECHANIC IS PRETTY MUCH FOR ONE PLAYER;
-        // IF THERE ARE 2 PLAYERS, BOTH WILL RESPAWN INSIDE EACH OTHER.
     }
 }

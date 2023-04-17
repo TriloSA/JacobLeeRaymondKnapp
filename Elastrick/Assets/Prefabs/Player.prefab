@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2203061072917853040}
   - component: {fileID: 2242724697145675469}
   - component: {fileID: 4947812346578948687}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -113,6 +113,8 @@ MonoBehaviour:
   threeHPValue: {fileID: 4951148521660721103}
   twoHPValue: {fileID: 4669175272410700663}
   oneHPValue: {fileID: 8066295410364429646}
+  isInvincible: 0
+  isPlayer1: 0
 --- !u!1 &2203061073453901381
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2203061073453901380}
   - component: {fileID: 2203061073453901383}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AimTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,8 +185,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 3011367
+  m_SortingLayer: 3
   m_SortingOrder: 10
   m_Sprite: {fileID: -1053854193, guid: 4de89a59f8c6bc2468f33789983b78ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -207,7 +209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2679824468281317725}
   - component: {fileID: 7274138277400040567}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 2HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -291,7 +293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6223315659993471702}
   - component: {fileID: 4748225682829017123}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 3HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,7 +377,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8046435611626986028}
   - component: {fileID: 5167592786725541946}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RotatePoint
   m_TagString: Untagged
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
@@ -459,7 +461,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6088266698377423210}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HealthUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -495,7 +497,7 @@ GameObject:
   - component: {fileID: 6912071790994900860}
   - component: {fileID: 4198150062427315021}
   - component: {fileID: 824554579107469872}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -578,7 +580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 130385496846331877}
   - component: {fileID: 5312990415370703288}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 1HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}

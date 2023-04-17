@@ -102,10 +102,16 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void Launch()
     {
-        if (canLaunch)
+        // Makes a raycast to check if there is something in front of the
+        // player. Stores it in var h.
+        var h = Physics2D.Raycast(transform.position, rotatePoint.right, 
+        1f, ~LayerMask.GetMask("Player"));
+
+        // If you can launch and you aren't raycast colliding into anything...
+        if (canLaunch && h.collider == null)
         {
             canLaunch = false;
-            //Debug.Log("Boing!");
+            Debug.Log("Boing!");
             rb2D.AddForce(rotation * launchVelocity, ForceMode2D.Impulse);
             isMoving = true;
         }
