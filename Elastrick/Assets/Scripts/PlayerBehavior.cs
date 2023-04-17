@@ -41,9 +41,20 @@ public class PlayerBehavior : MonoBehaviour
     /// </summary>
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Obstacles"))
+        // If you hit an obstacle, lose a life.
+        if (collision.gameObject.CompareTag("Obstacles") || 
+            collision.gameObject.CompareTag("Player"))
         {
             lives--;
+        }
+        
+        // If you hit a player while moving, make them lose a life.
+        // Only the player moving will not get hit, in order to serve as hit
+        // priority and to NOT make both players take damage.
+        if (collision.gameObject.CompareTag("Player") && 
+            this.gameObject.GetComponent<PlayerMovement>().isMoving == true)
+        {
+            collision.gameObject.GetComponent<PlayerBehavior>().lives--;
         }
     }
     

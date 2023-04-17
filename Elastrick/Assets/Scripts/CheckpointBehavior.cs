@@ -24,6 +24,10 @@ public class CheckpointBehavior : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Checkpoint Unlocked!");
+
+            // Checkpoint is now no longer collidable so you can't "unlock"
+            // and older checkpoint. So keep moving, slacker!
+            this.gameObject.GetComponent<Collider2D>().enabled = false;
             // newSpawn's values is now the same as the checkpoint's.
             Vector3 newSpawn = this.gameObject.transform.position;
 
