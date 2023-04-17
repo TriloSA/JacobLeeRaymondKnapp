@@ -143,7 +143,9 @@ public class PlayerBehavior : MonoBehaviour
     /// </summary>
     public void IsHittable()
     {
-        Debug.Log("You CAN get hurt.");
+        /*Debug.Log("You CAN get hurt.");*/
+
+        // Player is no longer invincible.
         isInvincible = false;
     }
 
@@ -153,8 +155,10 @@ public class PlayerBehavior : MonoBehaviour
     /// </summary>
     public void GiveIFrames()
     {
-        Debug.Log("you can't get hurt!");
         // Player gets Immunity frames upon respawn.
+        /*Debug.Log("you can't get hurt!")*/;
+
+        // Player is invincible for 2 seconds.
         isInvincible = true;
         Invoke("IsHittable", 2f);
     }
