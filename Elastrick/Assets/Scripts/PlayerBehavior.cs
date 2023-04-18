@@ -33,6 +33,10 @@ public class PlayerBehavior : MonoBehaviour
     public bool isPlayer1 = false;
     public static bool hasPlayer1 = false;
 
+    [Header("Rotate Point & Cursor")]
+    public GameObject rotPoint;
+    public GameObject cursor;
+
     /// <summary>
     /// Set's the default spawn values upon spawn.
     /// </summary>
@@ -114,6 +118,12 @@ public class PlayerBehavior : MonoBehaviour
             twoHPValue.SetActive(false);
             oneHPValue.SetActive(true);
         }
+        else
+        {
+            threeHPValue.SetActive(false);
+            twoHPValue.SetActive(false);
+            oneHPValue.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -123,18 +133,9 @@ public class PlayerBehavior : MonoBehaviour
     /// </summary>
     private void DieAndRespawn()
     {
-        GiveIFrames();
-
-        this.gameObject.GetComponent<PlayerMovement>().canLaunch = true;
-        this.gameObject.GetComponent<PlayerMovement>().isMoving = false;
-        this.gameObject.GetComponent<PlayerMovement>().hasAPowerUp = false;
-
-        // Resets your HP internally and visually.
-        lives = 3;
+        StartCoroutine(WaitToRespawn());        
         
-        // Respawn the player back to their original psoiton (whether it be
-        // spawn or their checkpoint location).
-        gameObject.transform.position = new Vector2(xVal, yVal);
+        GiveIFrames();
     }
 
     /// <summary>
@@ -161,5 +162,33 @@ public class PlayerBehavior : MonoBehaviour
         // Player is invincible for 2 seconds.
         isInvincible = true;
         Invoke("IsHittable", 2f);
+    }
+
+    /// <summary>
+    /// Starts coroutine which respawns the player back to their original 
+    /// positon (whether it be spawn or their checkpoint location).
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator WaitToRespawn()
+    {
+        // Player visually "dies". Need to add animation here.
+        this.rotPoint.GetComponent<SpriteRenderer>().enabled = false;
+        this.cursor.GetComponent<SpriteRenderer>().enabled = false;
+
+        // Wait 1.5 seconds.
+        yield return new WaitForSeconds(1.5f);
+
+        // Reset player's movement components so they can move.
+        this.gameObject.GetComponent<PlayerMovement>().canLaunch = true;
+        this.gameObject.GetComponent<PlayerMovement>().isMoving = false;
+        this.gameObject.GetComponent<PlayerMovement>().hasAPowerUp = false;
+
+        // Reset player HP and model visually and internally.
+        lives = 3;
+        this.rotPoint.GetComponent<SpriteRenderer>().enabled = true;
+        this.cursor.GetComponent<SpriteRenderer>().enabled = true;
+
+        // Reset player position.
+        gameObject.transform.position = new Vector2(xVal, yVal);
     }
 }

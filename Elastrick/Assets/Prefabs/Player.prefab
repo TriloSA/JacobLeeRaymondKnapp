@@ -115,6 +115,8 @@ MonoBehaviour:
   oneHPValue: {fileID: 8066295410364429646}
   isInvincible: 0
   isPlayer1: 0
+  rotPoint: {fileID: 5087738146429223433}
+  cursor: {fileID: 2203061073453901381}
 --- !u!1 &2203061073453901381
 GameObject:
   m_ObjectHideFlags: 0
