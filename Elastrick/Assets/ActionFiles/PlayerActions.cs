@@ -44,6 +44,24 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UsePowerUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""4da91bc9-3171-4835-8755-dbe1f2250606"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RotatePowerUp"",
+                    ""type"": ""Value"",
+                    ""id"": ""5dad930e-9925-419c-9681-8aa609214886"",
+                    ""expectedControlType"": ""Stick"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -66,6 +84,28 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Launch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a0bd1215-780b-4be2-ac63-88b35c8dfb9b"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UsePowerUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5b1ccd08-4d08-4948-ad63-30ffe58e9535"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotatePowerUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -146,6 +186,8 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
         m_PlayerActionMap = asset.FindActionMap("PlayerActionMap", throwIfNotFound: true);
         m_PlayerActionMap_Rotate = m_PlayerActionMap.FindAction("Rotate", throwIfNotFound: true);
         m_PlayerActionMap_Launch = m_PlayerActionMap.FindAction("Launch", throwIfNotFound: true);
+        m_PlayerActionMap_UsePowerUp = m_PlayerActionMap.FindAction("UsePowerUp", throwIfNotFound: true);
+        m_PlayerActionMap_RotatePowerUp = m_PlayerActionMap.FindAction("RotatePowerUp", throwIfNotFound: true);
         // MenuNavigation
         m_MenuNavigation = asset.FindActionMap("MenuNavigation", throwIfNotFound: true);
         m_MenuNavigation_Up = m_MenuNavigation.FindAction("Up", throwIfNotFound: true);
@@ -212,12 +254,16 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
     private IPlayerActionMapActions m_PlayerActionMapActionsCallbackInterface;
     private readonly InputAction m_PlayerActionMap_Rotate;
     private readonly InputAction m_PlayerActionMap_Launch;
+    private readonly InputAction m_PlayerActionMap_UsePowerUp;
+    private readonly InputAction m_PlayerActionMap_RotatePowerUp;
     public struct PlayerActionMapActions
     {
         private @PlayerActions m_Wrapper;
         public PlayerActionMapActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Rotate => m_Wrapper.m_PlayerActionMap_Rotate;
         public InputAction @Launch => m_Wrapper.m_PlayerActionMap_Launch;
+        public InputAction @UsePowerUp => m_Wrapper.m_PlayerActionMap_UsePowerUp;
+        public InputAction @RotatePowerUp => m_Wrapper.m_PlayerActionMap_RotatePowerUp;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -233,6 +279,12 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                 @Launch.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnLaunch;
                 @Launch.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnLaunch;
                 @Launch.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnLaunch;
+                @UsePowerUp.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnUsePowerUp;
+                @UsePowerUp.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnUsePowerUp;
+                @UsePowerUp.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnUsePowerUp;
+                @RotatePowerUp.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnRotatePowerUp;
+                @RotatePowerUp.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnRotatePowerUp;
+                @RotatePowerUp.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnRotatePowerUp;
             }
             m_Wrapper.m_PlayerActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -243,6 +295,12 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                 @Launch.started += instance.OnLaunch;
                 @Launch.performed += instance.OnLaunch;
                 @Launch.canceled += instance.OnLaunch;
+                @UsePowerUp.started += instance.OnUsePowerUp;
+                @UsePowerUp.performed += instance.OnUsePowerUp;
+                @UsePowerUp.canceled += instance.OnUsePowerUp;
+                @RotatePowerUp.started += instance.OnRotatePowerUp;
+                @RotatePowerUp.performed += instance.OnRotatePowerUp;
+                @RotatePowerUp.canceled += instance.OnRotatePowerUp;
             }
         }
     }
@@ -300,6 +358,8 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
     {
         void OnRotate(InputAction.CallbackContext context);
         void OnLaunch(InputAction.CallbackContext context);
+        void OnUsePowerUp(InputAction.CallbackContext context);
+        void OnRotatePowerUp(InputAction.CallbackContext context);
     }
     public interface IMenuNavigationActions
     {
