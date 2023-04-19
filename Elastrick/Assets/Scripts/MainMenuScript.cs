@@ -42,7 +42,7 @@ public class MainMenuScript : MonoBehaviour
     public void StartLevel01()
     {
         Debug.Log("Start Level01");
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Level1");
     }
 
     /// <summary>
