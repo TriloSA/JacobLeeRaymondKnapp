@@ -40,6 +40,8 @@ public class PlayerBehavior : MonoBehaviour
     [Header("Is Respawning Bool")]
     private bool isRespawning;
 
+    public GameObject healthUI;
+
     /// <summary>
     /// Set's the default spawn values upon spawn.
     /// </summary>
@@ -139,8 +141,8 @@ public class PlayerBehavior : MonoBehaviour
     /// </summary>
     private void DieAndRespawn()
     {
-        StartCoroutine(WaitToRespawn());        
-        
+        StartCoroutine(WaitToRespawn());
+
         GiveIFrames();
     }
 
@@ -167,6 +169,11 @@ public class PlayerBehavior : MonoBehaviour
 
         // Player is invincible for 2 seconds.
         isInvincible = true;
+
+        // Flickers HP to give visual indication they are invincible.
+        StartCoroutine(FlickerHP());
+
+        // You will become hittable in 2 seconds.
         Invoke("IsHittable", 2f);
     }
 
@@ -200,5 +207,21 @@ public class PlayerBehavior : MonoBehaviour
 
         // PANIC FIX FOR IT IDK.
         //StopAllCoroutines();
+    }
+
+    /// <summary>
+    /// Flickers HP by waiting 0.5 second intervals and disabling/re-enabling
+    /// the parent.
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator FlickerHP()
+    {
+        healthUI.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        healthUI.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        healthUI.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        healthUI.SetActive(true);
     }
 }

@@ -117,6 +117,7 @@ MonoBehaviour:
   isPlayer1: 0
   rotPoint: {fileID: 5087738146429223433}
   cursor: {fileID: 2203061073453901381}
+  healthUI: {fileID: 5167916983189799225}
 --- !u!1 &2203061073453901381
 GameObject:
   m_ObjectHideFlags: 0
