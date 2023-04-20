@@ -124,9 +124,10 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // uhh mr alex.
-        if (collision.gameObject.CompareTag("alexkoeberl"))
+        if (collision.gameObject.CompareTag("Powerup"))
         {
-            Debug.Log("hi i am alex koeberl, and you're watching the disney channel");
+            Debug.Log("hi i am alex koeberl, and you're watching the disney " +
+            "channel");
             StartCoroutine(ColorChangeForTheAlpha());
         }
 
