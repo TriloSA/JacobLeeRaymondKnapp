@@ -25,8 +25,12 @@ public class CheckpointBehavior : MonoBehaviour
         {
             Debug.Log("Checkpoint Unlocked!");
 
+            StartCoroutine(FlickerFlag());
+
             // Checkpoint is now no longer collidable so you can't "unlock"
-            // and older checkpoint. So keep moving, slacker!
+            // and older checkpoint. So keep moving, slacker! NOTE: This will
+            // CURRENTLY NOT work in 2 player since it will disable for the
+            // other player.
             this.gameObject.GetComponent<Collider2D>().enabled = false;
             // newSpawn's values is now the same as the checkpoint's.
             Vector3 newSpawn = this.gameObject.transform.position;
@@ -48,6 +52,25 @@ public class CheckpointBehavior : MonoBehaviour
             // Value Y
             collision.gameObject.GetComponent<PlayerBehavior>().yVal = 
             newSpawn.y;
+        }
+
+        /// <summary>
+        /// Flickers flag by waiting 0.3 second intervals and changing colors
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator FlickerFlag()
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().color = 
+            new Color(0, 0, 0, 255);
+            yield return new WaitForSeconds(0.3f);
+            this.gameObject.GetComponent<SpriteRenderer>().color =
+            new Color(255, 255, 255, 255);
+            yield return new WaitForSeconds(0.3f);
+            this.gameObject.GetComponent<SpriteRenderer>().color =
+            new Color(0, 0, 0, 255);
+            yield return new WaitForSeconds(0.3f);
+            this.gameObject.GetComponent<SpriteRenderer>().color =
+            new Color(255, 255, 255, 255);
         }
     }
 }
