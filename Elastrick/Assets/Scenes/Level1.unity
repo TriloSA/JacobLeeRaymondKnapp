@@ -1112,6 +1112,22 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 3011367
       objectReference: {fileID: 0}
+    - target: {fileID: 4748225682829017123, guid: db84befa8a2a6714b8af80ea81cccbc7, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4748225682829017123, guid: db84befa8a2a6714b8af80ea81cccbc7, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4748225682829017123, guid: db84befa8a2a6714b8af80ea81cccbc7, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951148521660721103, guid: db84befa8a2a6714b8af80ea81cccbc7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8046435611626986028, guid: db84befa8a2a6714b8af80ea81cccbc7, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.03

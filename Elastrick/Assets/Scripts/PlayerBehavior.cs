@@ -37,6 +37,9 @@ public class PlayerBehavior : MonoBehaviour
     public GameObject rotPoint;
     public GameObject cursor;
 
+    [Header("Is Respawning Bool")]
+    private bool isRespawning;
+
     /// <summary>
     /// Set's the default spawn values upon spawn.
     /// </summary>
@@ -92,11 +95,13 @@ public class PlayerBehavior : MonoBehaviour
     private void Update()
     {
         // If you lose all your lives, you die and respawn.
-        if(lives <= 0)
+        if(lives <= 0 && !isRespawning)
         {
+            isRespawning = true;
             DieAndRespawn();
         }
 
+        ///////////////////////////////////////////////////////////////////////
         // If your lives are at 3, your character should display a 3 HP value.
         if (lives == 3)
         {
@@ -124,6 +129,7 @@ public class PlayerBehavior : MonoBehaviour
             twoHPValue.SetActive(false);
             oneHPValue.SetActive(false);
         }
+        ///////////////////////////////////////////////////////////////////////
     }
 
     /// <summary>
@@ -190,5 +196,9 @@ public class PlayerBehavior : MonoBehaviour
 
         // Reset player position.
         gameObject.transform.position = new Vector2(xVal, yVal);
+        isRespawning = false;
+
+        // PANIC FIX FOR IT IDK.
+        //StopAllCoroutines();
     }
 }
