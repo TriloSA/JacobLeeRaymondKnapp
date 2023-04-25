@@ -58,4 +58,29 @@ public class PlatformBehavior : MonoBehaviour
             goingDown = false;
         }
     }
+
+    /// <summary>
+    /// Jacob Lee: Player becomes a child and now is riding the wall.
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.transform.SetParent(transform);
+        }
+    }
+
+    /// <summary>
+    /// Jacob Lee: Player becomes it's own parent and is no longer riding the
+    /// wall.
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.transform.SetParent(null);
+        }
+    }
 }
