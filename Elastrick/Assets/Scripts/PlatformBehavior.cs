@@ -68,6 +68,7 @@ public class PlatformBehavior : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.transform.SetParent(transform);
+            collision.gameObject.GetComponent<PlayerMovement>().onAWall = true;
         }
     }
 
@@ -81,6 +82,7 @@ public class PlatformBehavior : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.transform.SetParent(null);
+            collision.gameObject.GetComponent<PlayerMovement>().onAWall = false;
         }
     }
 }

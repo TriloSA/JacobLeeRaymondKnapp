@@ -45,6 +45,9 @@ public class PlayerMovement : MonoBehaviour
     // For anti powerup spam protection.
     public bool hasAPowerUp;
 
+    [Header("Unstick Boolean")]
+    public bool onAWall;
+
     /// <summary>
     /// On awake, link the playeractions and the "action keywords" to code
     /// variables.
@@ -136,6 +139,13 @@ public class PlayerMovement : MonoBehaviour
         if (!canLaunch && stopColl == false)
         {
             StartCoroutine(StopMovement());
+        }
+
+        // If you're on a wall and hit something, you unstick.
+        if (canLaunch && onAWall)
+        {
+            transform.SetParent(null);
+            onAWall = false;
         }
     }
 
