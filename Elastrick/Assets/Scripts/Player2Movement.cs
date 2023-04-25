@@ -1,9 +1,9 @@
 /*****************************************************************************
-// File Name :         PlayerMovement.cs
-// Author :            Jacob Lee
-// Creation Date :     April 10th, 2023
+// File Name :         Player2Movement.cs
+// Author :            Ray Knapp
+// Creation Date :     April 24th, 2023
 //
-// Movement script for the player. Rotates the player using controller and the
+// Movement script for the second player. Rotates the player using controller and the
 player actions. That rotation is saved and referenced with the launch, as it
 adds a force to move towards the selected direction of where the ball is
 facing, primarilly shown visually by the pointer that rotates around the
@@ -16,7 +16,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class PlayerMovement : MonoBehaviour
+public class Player2Movement : MonoBehaviour
 {
     Vector2 rotation;
     PlayerActions pActions;
@@ -24,9 +24,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Linkage")]
     [SerializeField] private Transform rotatePoint;
     [SerializeField] private Rigidbody2D rb2D;
-
-    [SerializeField] private PlayerInputManager playerInputManager;
-    [SerializeField] private GameObject player2;
 
     [Header("Launch Check")]
     public bool canLaunch = true;
@@ -54,18 +51,16 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void Awake()
     {
-        playerInputManager = GameObject.Find("PlayerManager").GetComponent<PlayerInputManager>();
-        playerInputManager.playerPrefab = player2;
 
         // Links pActions to PlayerActions
         pActions = new PlayerActions();
 
         // Binds the Rotation of controller to rotation (vector2)
-        pActions.Player1Actions.Rotate.performed += ctx => rotation =
+        pActions.Player2Actions.Rotate.performed += ctx => rotation =
         ctx.ReadValue<Vector2>();
 
         // Binds the Launch from player's action map to Launch();.
-        pActions.Player1Actions.Launch.performed += ctx => Launch();
+        pActions.Player2Actions.Launch.performed += ctx => Launch();
     }
 
     /// <summary>
@@ -81,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void OnEnable()
     {
-        pActions.Player1Actions.Enable();
+        pActions.Player2Actions.Enable();
     }
 
     /// <summary>
@@ -89,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void OnDisable()
     {
-        pActions.Player1Actions.Disable();
+        pActions.Player2Actions.Disable();
     }
 
     /// <summary>
@@ -110,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Makes a raycast to check if there is something in front of the
         // player. Stores it in var h.
-        var h = Physics2D.Raycast(transform.position, rotatePoint.right, 
+        var h = Physics2D.Raycast(transform.position, rotatePoint.right,
         1f, ~LayerMask.GetMask("Player"));
 
         // If you can launch and you aren't raycast colliding into anything...

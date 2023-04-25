@@ -15,11 +15,11 @@ MonoBehaviour:
   m_PixelRect:
     serializedVersion: 2
     x: 0
-    y: 43.2
-    width: 1536
-    height: 772.8
+    y: 44
+    width: 2048
+    height: 1060
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Project
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -43,12 +43,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 30
-    width: 1536
-    height: 722.8
+    width: 2048
+    height: 1010
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 67
+  controlID: 60
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -64,10 +64,10 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1071.2
+    x: 1428
     y: 0
-    width: 464.80005
-    height: 722.8
+    width: 620
+    height: 1010
   m_MinSize: {x: 275, y: 50}
   m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
@@ -92,8 +92,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 434.4
-    height: 458.4
+    width: 579.2
+    height: 640.8
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
@@ -117,9 +117,9 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 458.4
-    width: 1071.2
-    height: 264.4
+    y: 640.8
+    width: 1428
+    height: 369.2
   m_MinSize: {x: 231, y: 271}
   m_MaxSize: {x: 10001, y: 10021}
   m_ActualView: {fileID: 13}
@@ -148,8 +148,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1536
-    height: 772.8
+    width: 2048
+    height: 1060
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
@@ -173,7 +173,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1536
+    width: 2048
     height: 30
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -194,8 +194,8 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 752.8
-    width: 1536
+    y: 1040
+    width: 2048
     height: 20
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -218,12 +218,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1071.2
-    height: 722.8
+    width: 1428
+    height: 1010
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 68
+  controlID: 65
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -243,12 +243,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1071.2
-    height: 458.4
+    width: 1428
+    height: 640.8
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 69
+  controlID: 66
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -264,10 +264,10 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 434.4
+    x: 579.2
     y: 0
-    width: 636.7999
-    height: 458.4
+    width: 848.8
+    height: 640.8
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 16}
@@ -297,18 +297,18 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 434.4
-    y: 73.6
-    width: 634.7999
-    height: 437.4
+    x: 579.2
+    y: 74.4
+    width: 846.8
+    height: 619.8
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_ActionMapsTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: e5312168
-    m_LastClickedID: 1747005925
+    m_SelectedIDs: 74054a57
+    m_LastClickedID: 1464468852
     m_ExpandedIDs: 00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -329,8 +329,8 @@ MonoBehaviour:
     m_SearchString: 
   m_ActionsTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: b4aaf33c
-    m_LastClickedID: 1022601908
+    m_SelectedIDs: 997d0084
+    m_LastClickedID: -2080342631
     m_ExpandedIDs: 7b5e01dc69b403ddcd5a41e2b4aaf33ce5312168
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -370,7 +370,7 @@ MonoBehaviour:
     m_ImportedAssetObject: {fileID: -944628639613478452, guid: ff3b4a28a8e98d141ba0c79383ed0e8a, type: 3}
     m_AssetGUID: ff3b4a28a8e98d141ba0c79383ed0e8a
     m_ImportedAssetJson: "{\n    \"name\": \"PlayerActions\",\n    \"maps\": [\n       
-      {\n            \"name\": \"PlayerActionMap\",\n            \"id\": \"1408581e-bd9c-44fa-8a95-cb07ed41183f\",\n           
+      {\n            \"name\": \"Player1Actions\",\n            \"id\": \"1408581e-bd9c-44fa-8a95-cb07ed41183f\",\n           
       \"actions\": [\n                {\n                    \"name\": \"Rotate\",\n                   
       \"type\": \"Value\",\n                    \"id\": \"6ec7298f-6c84-476c-9bd7-50e1f926f815\",\n                   
       \"expectedControlType\": \"Stick\",\n                    \"processors\": \"\",\n                   
@@ -405,6 +405,45 @@ MonoBehaviour:
       \"isComposite\": false,\n                    \"isPartOfComposite\": false\n               
       },\n                {\n                    \"name\": \"\",\n                   
       \"id\": \"5b1ccd08-4d08-4948-ad63-30ffe58e9535\",\n                    \"path\":
+      \"<Gamepad>/rightStick\",\n                    \"interactions\": \"\",\n                   
+      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
+      \"action\": \"RotatePowerUp\",\n                    \"isComposite\": false,\n                   
+      \"isPartOfComposite\": false\n                }\n            ]\n        },\n       
+      {\n            \"name\": \"Player2Actions\",\n            \"id\": \"4162f805-3d06-427e-80bf-6f89f77f39dd\",\n           
+      \"actions\": [\n                {\n                    \"name\": \"Rotate\",\n                   
+      \"type\": \"Value\",\n                    \"id\": \"605b39e8-c686-49ae-bd09-10344a8be599\",\n                   
+      \"expectedControlType\": \"Stick\",\n                    \"processors\": \"\",\n                   
+      \"interactions\": \"\",\n                    \"initialStateCheck\": true\n               
+      },\n                {\n                    \"name\": \"Launch\",\n                   
+      \"type\": \"Button\",\n                    \"id\": \"78c021c2-d8cb-4fab-90b5-1d90ce348ca1\",\n                   
+      \"expectedControlType\": \"Button\",\n                    \"processors\": \"\",\n                   
+      \"interactions\": \"\",\n                    \"initialStateCheck\": false\n               
+      },\n                {\n                    \"name\": \"UsePowerUp\",\n                   
+      \"type\": \"Button\",\n                    \"id\": \"ebf1aaa2-3edf-4043-bb8c-aeadb3b7a16e\",\n                   
+      \"expectedControlType\": \"Button\",\n                    \"processors\": \"\",\n                   
+      \"interactions\": \"\",\n                    \"initialStateCheck\": false\n               
+      },\n                {\n                    \"name\": \"RotatePowerUp\",\n                   
+      \"type\": \"Value\",\n                    \"id\": \"27f46d33-f6e5-4fb5-a146-6064e8e91ac9\",\n                   
+      \"expectedControlType\": \"Stick\",\n                    \"processors\": \"\",\n                   
+      \"interactions\": \"\",\n                    \"initialStateCheck\": true\n               
+      }\n            ],\n            \"bindings\": [\n                {\n                   
+      \"name\": \"\",\n                    \"id\": \"31c6f51b-3592-4730-9d84-15030424230e\",\n                   
+      \"path\": \"<Gamepad>/leftStick\",\n                    \"interactions\": \"\",\n                   
+      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
+      \"action\": \"Rotate\",\n                    \"isComposite\": false,\n                   
+      \"isPartOfComposite\": false\n                },\n                {\n                   
+      \"name\": \"\",\n                    \"id\": \"c444583d-d428-430c-9a33-a21c36f3cf29\",\n                   
+      \"path\": \"<Gamepad>/buttonSouth\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"Launch\",\n                    \"isComposite\":
+      false,\n                    \"isPartOfComposite\": false\n                },\n               
+      {\n                    \"name\": \"\",\n                    \"id\": \"03ba6af9-032a-4185-923f-f50b49834a5a\",\n                   
+      \"path\": \"<Gamepad>/rightTrigger\",\n                    \"interactions\":
+      \"\",\n                    \"processors\": \"\",\n                    \"groups\":
+      \"\",\n                    \"action\": \"UsePowerUp\",\n                   
+      \"isComposite\": false,\n                    \"isPartOfComposite\": false\n               
+      },\n                {\n                    \"name\": \"\",\n                   
+      \"id\": \"09e3a769-939e-4a18-937c-44de10a61b9c\",\n                    \"path\":
       \"<Gamepad>/rightStick\",\n                    \"interactions\": \"\",\n                   
       \"processors\": \"\",\n                    \"groups\": \"\",\n                   
       \"action\": \"RotatePowerUp\",\n                    \"isComposite\": false,\n                   
@@ -475,9 +514,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 532
-    width: 1070.2
-    height: 243.4
+    y: 715.2
+    width: 1427
+    height: 348.2
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -495,22 +534,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Prefabs
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Prefabs
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\jacob\OneDrive\Documents\GitHub\JacobLeeRaymondKnapp\Elastrick
+  m_LastProjectPath: C:\Users\sugar\OneDrive\Documents\GitHub\JacobLeeRaymondKnapp\Elastrick
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 16.600006}
-    m_SelectedIDs: d4640000
-    m_LastClickedID: 25812
-    m_ExpandedIDs: 000000009464000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 14650000
+    m_LastClickedID: 25876
+    m_ExpandedIDs: 000000000865000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -538,7 +577,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000094640000
+    m_ExpandedIDs: 0000000008650000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -614,10 +653,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1071.2001
-    y: 73.6
-    width: 463.80005
-    height: 701.8
+    x: 1428
+    y: 74.4
+    width: 619
+    height: 989
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -656,9 +695,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 73.6
-    width: 433.4
-    height: 437.4
+    y: 74.4
+    width: 578.2
+    height: 619.8
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -668,7 +707,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 70eeffffb6eeffffc4f0ffffcef0ffff08f6ffffe6f6ffff2ef7ffff30f9ffff48f9ffff28fbffff
+      m_ExpandedIDs: 90e8fffffae8ffffe8e9ffff4cf0ffff28fbffff566a0000686a0000ae6a0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -712,10 +751,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 434.4
-    y: 73.6
-    width: 634.7999
-    height: 437.4
+    x: 579.2
+    y: 74.4
+    width: 846.8
+    height: 619.8
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -725,8 +764,8 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: -100, y: -25.600006}
+      snapOffset: {x: -100, y: -25.599976}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 3
       id: Tool Settings
       index: 0
@@ -747,7 +786,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 0}
+      snapOffset: {x: 0, y: 24.8}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-scene-view-toolbar
@@ -791,7 +830,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 0}
+      snapOffset: {x: 0, y: 24.8}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-transform-toolbar
@@ -824,7 +863,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 0
-      snapOffset: {x: 0, y: 0}
+      snapOffset: {x: 0, y: 24.8}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Camera
@@ -939,9 +978,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 4.384698, y: -0.79566705, z: -10.004336}
+    m_Target: {x: -14.053939, y: -4.151502, z: 2.0536547}
     speed: 2
-    m_Value: {x: 4.384698, y: -0.79566705, z: -10.004336}
+    m_Value: {x: -14.053939, y: -4.151502, z: 2.0536547}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -992,9 +1031,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 12.55765
+    m_Target: 9.243058
     speed: 2
-    m_Value: 12.55765
+    m_Value: 9.243058
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1039,10 +1078,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 434.4
-    y: 73.6
-    width: 634.7999
-    height: 437.4
+    x: 579.2
+    y: 74.4
+    width: 846.8
+    height: 619.8
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1053,7 +1092,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 634.7999, y: 357}
+  m_TargetSize: {x: 846.8, y: 476}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -1068,10 +1107,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -253.91997
-    m_HBaseRangeMax: 253.91997
-    m_VBaseRangeMin: -142.8
-    m_VBaseRangeMax: 142.8
+    m_HBaseRangeMin: -338.72
+    m_HBaseRangeMax: 338.72
+    m_VBaseRangeMin: -190.40001
+    m_VBaseRangeMax: 190.40001
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -1089,23 +1128,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 634.7999
-      height: 416.4
+      width: 846.8
+      height: 598.8
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 317.39996, y: 208.2}
+    m_Translation: {x: 423.4, y: 299.4}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -317.39996
-      y: -208.2
-      width: 634.7999
-      height: 416.4
+      x: -423.4
+      y: -299.4
+      width: 846.8
+      height: 598.8
     m_MinimalGUI: 1
   m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 793.4999, y: 546.75}
+  m_LastWindowPixelSize: {x: 1058.5, y: 774.75}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -1132,9 +1171,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 532
-    width: 1070.2
-    height: 243.4
+    y: 715.2
+    width: 1427
+    height: 348.2
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default

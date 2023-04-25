@@ -24,7 +24,7 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
     ""name"": ""PlayerActions"",
     ""maps"": [
         {
-            ""name"": ""PlayerActionMap"",
+            ""name"": ""Player1Actions"",
             ""id"": ""1408581e-bd9c-44fa-8a95-cb07ed41183f"",
             ""actions"": [
                 {
@@ -112,6 +112,94 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
             ]
         },
         {
+            ""name"": ""Player2Actions"",
+            ""id"": ""4162f805-3d06-427e-80bf-6f89f77f39dd"",
+            ""actions"": [
+                {
+                    ""name"": ""Rotate"",
+                    ""type"": ""Value"",
+                    ""id"": ""605b39e8-c686-49ae-bd09-10344a8be599"",
+                    ""expectedControlType"": ""Stick"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Launch"",
+                    ""type"": ""Button"",
+                    ""id"": ""78c021c2-d8cb-4fab-90b5-1d90ce348ca1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UsePowerUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""ebf1aaa2-3edf-4043-bb8c-aeadb3b7a16e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RotatePowerUp"",
+                    ""type"": ""Value"",
+                    ""id"": ""27f46d33-f6e5-4fb5-a146-6064e8e91ac9"",
+                    ""expectedControlType"": ""Stick"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""31c6f51b-3592-4730-9d84-15030424230e"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c444583d-d428-430c-9a33-a21c36f3cf29"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Launch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03ba6af9-032a-4185-923f-f50b49834a5a"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UsePowerUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""09e3a769-939e-4a18-937c-44de10a61b9c"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotatePowerUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""MenuNavigation"",
             ""id"": ""fafe1c70-b167-4f1c-bf2a-08286c6f7077"",
             ""actions"": [
@@ -182,12 +270,18 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // PlayerActionMap
-        m_PlayerActionMap = asset.FindActionMap("PlayerActionMap", throwIfNotFound: true);
-        m_PlayerActionMap_Rotate = m_PlayerActionMap.FindAction("Rotate", throwIfNotFound: true);
-        m_PlayerActionMap_Launch = m_PlayerActionMap.FindAction("Launch", throwIfNotFound: true);
-        m_PlayerActionMap_UsePowerUp = m_PlayerActionMap.FindAction("UsePowerUp", throwIfNotFound: true);
-        m_PlayerActionMap_RotatePowerUp = m_PlayerActionMap.FindAction("RotatePowerUp", throwIfNotFound: true);
+        // Player1Actions
+        m_Player1Actions = asset.FindActionMap("Player1Actions", throwIfNotFound: true);
+        m_Player1Actions_Rotate = m_Player1Actions.FindAction("Rotate", throwIfNotFound: true);
+        m_Player1Actions_Launch = m_Player1Actions.FindAction("Launch", throwIfNotFound: true);
+        m_Player1Actions_UsePowerUp = m_Player1Actions.FindAction("UsePowerUp", throwIfNotFound: true);
+        m_Player1Actions_RotatePowerUp = m_Player1Actions.FindAction("RotatePowerUp", throwIfNotFound: true);
+        // Player2Actions
+        m_Player2Actions = asset.FindActionMap("Player2Actions", throwIfNotFound: true);
+        m_Player2Actions_Rotate = m_Player2Actions.FindAction("Rotate", throwIfNotFound: true);
+        m_Player2Actions_Launch = m_Player2Actions.FindAction("Launch", throwIfNotFound: true);
+        m_Player2Actions_UsePowerUp = m_Player2Actions.FindAction("UsePowerUp", throwIfNotFound: true);
+        m_Player2Actions_RotatePowerUp = m_Player2Actions.FindAction("RotatePowerUp", throwIfNotFound: true);
         // MenuNavigation
         m_MenuNavigation = asset.FindActionMap("MenuNavigation", throwIfNotFound: true);
         m_MenuNavigation_Up = m_MenuNavigation.FindAction("Up", throwIfNotFound: true);
@@ -249,44 +343,44 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // PlayerActionMap
-    private readonly InputActionMap m_PlayerActionMap;
-    private IPlayerActionMapActions m_PlayerActionMapActionsCallbackInterface;
-    private readonly InputAction m_PlayerActionMap_Rotate;
-    private readonly InputAction m_PlayerActionMap_Launch;
-    private readonly InputAction m_PlayerActionMap_UsePowerUp;
-    private readonly InputAction m_PlayerActionMap_RotatePowerUp;
-    public struct PlayerActionMapActions
+    // Player1Actions
+    private readonly InputActionMap m_Player1Actions;
+    private IPlayer1ActionsActions m_Player1ActionsActionsCallbackInterface;
+    private readonly InputAction m_Player1Actions_Rotate;
+    private readonly InputAction m_Player1Actions_Launch;
+    private readonly InputAction m_Player1Actions_UsePowerUp;
+    private readonly InputAction m_Player1Actions_RotatePowerUp;
+    public struct Player1ActionsActions
     {
         private @PlayerActions m_Wrapper;
-        public PlayerActionMapActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Rotate => m_Wrapper.m_PlayerActionMap_Rotate;
-        public InputAction @Launch => m_Wrapper.m_PlayerActionMap_Launch;
-        public InputAction @UsePowerUp => m_Wrapper.m_PlayerActionMap_UsePowerUp;
-        public InputAction @RotatePowerUp => m_Wrapper.m_PlayerActionMap_RotatePowerUp;
-        public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
+        public Player1ActionsActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Rotate => m_Wrapper.m_Player1Actions_Rotate;
+        public InputAction @Launch => m_Wrapper.m_Player1Actions_Launch;
+        public InputAction @UsePowerUp => m_Wrapper.m_Player1Actions_UsePowerUp;
+        public InputAction @RotatePowerUp => m_Wrapper.m_Player1Actions_RotatePowerUp;
+        public InputActionMap Get() { return m_Wrapper.m_Player1Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlayerActionMapActions set) { return set.Get(); }
-        public void SetCallbacks(IPlayerActionMapActions instance)
+        public static implicit operator InputActionMap(Player1ActionsActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayer1ActionsActions instance)
         {
-            if (m_Wrapper.m_PlayerActionMapActionsCallbackInterface != null)
+            if (m_Wrapper.m_Player1ActionsActionsCallbackInterface != null)
             {
-                @Rotate.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnRotate;
-                @Rotate.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnRotate;
-                @Rotate.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnRotate;
-                @Launch.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnLaunch;
-                @Launch.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnLaunch;
-                @Launch.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnLaunch;
-                @UsePowerUp.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnUsePowerUp;
-                @UsePowerUp.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnUsePowerUp;
-                @UsePowerUp.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnUsePowerUp;
-                @RotatePowerUp.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnRotatePowerUp;
-                @RotatePowerUp.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnRotatePowerUp;
-                @RotatePowerUp.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnRotatePowerUp;
+                @Rotate.started -= m_Wrapper.m_Player1ActionsActionsCallbackInterface.OnRotate;
+                @Rotate.performed -= m_Wrapper.m_Player1ActionsActionsCallbackInterface.OnRotate;
+                @Rotate.canceled -= m_Wrapper.m_Player1ActionsActionsCallbackInterface.OnRotate;
+                @Launch.started -= m_Wrapper.m_Player1ActionsActionsCallbackInterface.OnLaunch;
+                @Launch.performed -= m_Wrapper.m_Player1ActionsActionsCallbackInterface.OnLaunch;
+                @Launch.canceled -= m_Wrapper.m_Player1ActionsActionsCallbackInterface.OnLaunch;
+                @UsePowerUp.started -= m_Wrapper.m_Player1ActionsActionsCallbackInterface.OnUsePowerUp;
+                @UsePowerUp.performed -= m_Wrapper.m_Player1ActionsActionsCallbackInterface.OnUsePowerUp;
+                @UsePowerUp.canceled -= m_Wrapper.m_Player1ActionsActionsCallbackInterface.OnUsePowerUp;
+                @RotatePowerUp.started -= m_Wrapper.m_Player1ActionsActionsCallbackInterface.OnRotatePowerUp;
+                @RotatePowerUp.performed -= m_Wrapper.m_Player1ActionsActionsCallbackInterface.OnRotatePowerUp;
+                @RotatePowerUp.canceled -= m_Wrapper.m_Player1ActionsActionsCallbackInterface.OnRotatePowerUp;
             }
-            m_Wrapper.m_PlayerActionMapActionsCallbackInterface = instance;
+            m_Wrapper.m_Player1ActionsActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Rotate.started += instance.OnRotate;
@@ -304,7 +398,64 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
             }
         }
     }
-    public PlayerActionMapActions @PlayerActionMap => new PlayerActionMapActions(this);
+    public Player1ActionsActions @Player1Actions => new Player1ActionsActions(this);
+
+    // Player2Actions
+    private readonly InputActionMap m_Player2Actions;
+    private IPlayer2ActionsActions m_Player2ActionsActionsCallbackInterface;
+    private readonly InputAction m_Player2Actions_Rotate;
+    private readonly InputAction m_Player2Actions_Launch;
+    private readonly InputAction m_Player2Actions_UsePowerUp;
+    private readonly InputAction m_Player2Actions_RotatePowerUp;
+    public struct Player2ActionsActions
+    {
+        private @PlayerActions m_Wrapper;
+        public Player2ActionsActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Rotate => m_Wrapper.m_Player2Actions_Rotate;
+        public InputAction @Launch => m_Wrapper.m_Player2Actions_Launch;
+        public InputAction @UsePowerUp => m_Wrapper.m_Player2Actions_UsePowerUp;
+        public InputAction @RotatePowerUp => m_Wrapper.m_Player2Actions_RotatePowerUp;
+        public InputActionMap Get() { return m_Wrapper.m_Player2Actions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(Player2ActionsActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayer2ActionsActions instance)
+        {
+            if (m_Wrapper.m_Player2ActionsActionsCallbackInterface != null)
+            {
+                @Rotate.started -= m_Wrapper.m_Player2ActionsActionsCallbackInterface.OnRotate;
+                @Rotate.performed -= m_Wrapper.m_Player2ActionsActionsCallbackInterface.OnRotate;
+                @Rotate.canceled -= m_Wrapper.m_Player2ActionsActionsCallbackInterface.OnRotate;
+                @Launch.started -= m_Wrapper.m_Player2ActionsActionsCallbackInterface.OnLaunch;
+                @Launch.performed -= m_Wrapper.m_Player2ActionsActionsCallbackInterface.OnLaunch;
+                @Launch.canceled -= m_Wrapper.m_Player2ActionsActionsCallbackInterface.OnLaunch;
+                @UsePowerUp.started -= m_Wrapper.m_Player2ActionsActionsCallbackInterface.OnUsePowerUp;
+                @UsePowerUp.performed -= m_Wrapper.m_Player2ActionsActionsCallbackInterface.OnUsePowerUp;
+                @UsePowerUp.canceled -= m_Wrapper.m_Player2ActionsActionsCallbackInterface.OnUsePowerUp;
+                @RotatePowerUp.started -= m_Wrapper.m_Player2ActionsActionsCallbackInterface.OnRotatePowerUp;
+                @RotatePowerUp.performed -= m_Wrapper.m_Player2ActionsActionsCallbackInterface.OnRotatePowerUp;
+                @RotatePowerUp.canceled -= m_Wrapper.m_Player2ActionsActionsCallbackInterface.OnRotatePowerUp;
+            }
+            m_Wrapper.m_Player2ActionsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Rotate.started += instance.OnRotate;
+                @Rotate.performed += instance.OnRotate;
+                @Rotate.canceled += instance.OnRotate;
+                @Launch.started += instance.OnLaunch;
+                @Launch.performed += instance.OnLaunch;
+                @Launch.canceled += instance.OnLaunch;
+                @UsePowerUp.started += instance.OnUsePowerUp;
+                @UsePowerUp.performed += instance.OnUsePowerUp;
+                @UsePowerUp.canceled += instance.OnUsePowerUp;
+                @RotatePowerUp.started += instance.OnRotatePowerUp;
+                @RotatePowerUp.performed += instance.OnRotatePowerUp;
+                @RotatePowerUp.canceled += instance.OnRotatePowerUp;
+            }
+        }
+    }
+    public Player2ActionsActions @Player2Actions => new Player2ActionsActions(this);
 
     // MenuNavigation
     private readonly InputActionMap m_MenuNavigation;
@@ -354,7 +505,14 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
         }
     }
     public MenuNavigationActions @MenuNavigation => new MenuNavigationActions(this);
-    public interface IPlayerActionMapActions
+    public interface IPlayer1ActionsActions
+    {
+        void OnRotate(InputAction.CallbackContext context);
+        void OnLaunch(InputAction.CallbackContext context);
+        void OnUsePowerUp(InputAction.CallbackContext context);
+        void OnRotatePowerUp(InputAction.CallbackContext context);
+    }
+    public interface IPlayer2ActionsActions
     {
         void OnRotate(InputAction.CallbackContext context);
         void OnLaunch(InputAction.CallbackContext context);
