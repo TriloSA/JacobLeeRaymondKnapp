@@ -142,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // If you're on a wall and hit something, you unstick.
-        if (canLaunch && onAWall)
+        if (canLaunch && onAWall || collision.gameObject.CompareTag("Platforms") && onAWall)
         {
             transform.SetParent(null);
             onAWall = false;

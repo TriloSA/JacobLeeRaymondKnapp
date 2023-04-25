@@ -9,6 +9,7 @@ TagManager:
   - Obstacles
   - Checkpoint
   - MovingPlatforms
+  - Platforms
   layers:
   - Default
   - TransparentFX
