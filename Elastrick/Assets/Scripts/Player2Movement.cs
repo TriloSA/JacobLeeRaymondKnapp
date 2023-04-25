@@ -19,7 +19,7 @@ using UnityEngine.InputSystem;
 public class Player2Movement : MonoBehaviour
 {
     Vector2 rotation;
-    PlayerActions pActions;
+    Player2Actions p2Actions;
 
     [Header("Linkage")]
     [SerializeField] private Transform rotatePoint;
@@ -53,14 +53,14 @@ public class Player2Movement : MonoBehaviour
     {
 
         // Links pActions to PlayerActions
-        pActions = new PlayerActions();
+        p2Actions = new Player2Actions();
 
         // Binds the Rotation of controller to rotation (vector2)
-        pActions.Player2Actions.Rotate.performed += ctx => rotation =
+        p2Actions.PlayerActions2.Rotate.performed += ctx => rotation =
         ctx.ReadValue<Vector2>();
 
         // Binds the Launch from player's action map to Launch();.
-        pActions.Player2Actions.Launch.performed += ctx => Launch();
+        p2Actions.PlayerActions2.Launch.performed += ctx => Launch();
     }
 
     /// <summary>
@@ -76,7 +76,7 @@ public class Player2Movement : MonoBehaviour
     /// </summary>
     private void OnEnable()
     {
-        pActions.Player2Actions.Enable();
+        p2Actions.PlayerActions2.Enable();
     }
 
     /// <summary>
@@ -84,7 +84,7 @@ public class Player2Movement : MonoBehaviour
     /// </summary>
     private void OnDisable()
     {
-        pActions.Player2Actions.Disable();
+        p2Actions.PlayerActions2.Disable();
     }
 
     /// <summary>
