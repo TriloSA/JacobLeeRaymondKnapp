@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 49212564}
   m_Layer: 0
   m_Name: Platform2
-  m_TagString: Untagged
+  m_TagString: MovingPlatforms
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -588,7 +588,7 @@ GameObject:
   - component: {fileID: 200001197}
   m_Layer: 0
   m_Name: Platform1
-  m_TagString: Untagged
+  m_TagString: MovingPlatforms
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1269,6 +1269,10 @@ PrefabInstance:
     - target: {fileID: 2203061072917853041, guid: db84befa8a2a6714b8af80ea81cccbc7, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2203061072917853043, guid: db84befa8a2a6714b8af80ea81cccbc7, type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2203061072917853043, guid: db84befa8a2a6714b8af80ea81cccbc7, type: 3}
       propertyPath: m_CollisionDetection
@@ -2213,7 +2217,7 @@ GameObject:
   - component: {fileID: 643568186}
   m_Layer: 0
   m_Name: Platform3
-  m_TagString: Untagged
+  m_TagString: MovingPlatforms
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

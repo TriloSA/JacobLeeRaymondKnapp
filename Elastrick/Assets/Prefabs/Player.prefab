@@ -91,10 +91,11 @@ MonoBehaviour:
   rb2D: {fileID: 2203061072917853043}
   canLaunch: 1
   isMoving: 0
-  launchVelocity: 10
+  launchVelocity: 15
   colorLink: {fileID: 5087738146429223433}
   stopColl: 0
   hasAPowerUp: 0
+  onAWall: 0
 --- !u!114 &4947812346578948687
 MonoBehaviour:
   m_ObjectHideFlags: 0
