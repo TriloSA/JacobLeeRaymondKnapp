@@ -116,12 +116,14 @@ MonoBehaviour:
   threeHPValue: {fileID: 4951148521660721103}
   twoHPValue: {fileID: 4669175272410700663}
   oneHPValue: {fileID: 8066295410364429646}
+  healthUI: {fileID: 5167916983189799225}
   isInvincible: 0
   isPlayer1: 0
   rotPoint: {fileID: 5087738146429223433}
   cursor: {fileID: 2203061073453901381}
-  healthUI: {fileID: 5167916983189799225}
   rotateRenderer: {fileID: 5167592786725541946}
+  playersHit: {fileID: 8300000, guid: 118de6d0eb972754d96c65c2f13ce0f8, type: 3}
+  lowHP: {fileID: 8300000, guid: 4856c85d77f7d364687955bb73e8652e, type: 3}
 --- !u!114 &321621191
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -25,6 +25,7 @@ public class PlayerBehavior : MonoBehaviour
     public GameObject threeHPValue;
     public GameObject twoHPValue;
     public GameObject oneHPValue;
+    public GameObject healthUI;
 
     [Header("Invinciblity Frames")]
     public bool isInvincible = false;
@@ -40,9 +41,12 @@ public class PlayerBehavior : MonoBehaviour
     [Header("Is Respawning Bool")]
     private bool isRespawning;
 
-    public GameObject healthUI;
-
+    [Header("Rotate Object's Sprite Renderer")]
     public SpriteRenderer rotateRenderer;
+
+    [Header("SFX")]
+    public AudioClip playersHit;
+    public AudioClip lowHP;
 
     /// <summary>
     /// Set's the default spawn values upon spawn.
@@ -98,6 +102,8 @@ public class PlayerBehavior : MonoBehaviour
             collision.gameObject.GetComponent<PlayerBehavior>().lives--;
 
             collision.gameObject.GetComponent<PlayerBehavior>().GiveIFrames();
+
+            AudioSource.PlayClipAtPoint(playersHit, transform.position);
         }
     }
     
