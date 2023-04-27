@@ -38,8 +38,9 @@ public class PlayerBehavior : MonoBehaviour
     public GameObject rotPoint;
     public GameObject cursor;
 
-    [Header("Is Respawning Bool")]
+    [Header("Is Respawning Bool & Has Been Low HP Bool")]
     private bool isRespawning;
+    private bool hasBeenLowHP;
 
     [Header("Rotate Object's Sprite Renderer")]
     public SpriteRenderer rotateRenderer;
@@ -148,6 +149,12 @@ public class PlayerBehavior : MonoBehaviour
             oneHPValue.SetActive(false);
         }
         ///////////////////////////////////////////////////////////////////////
+
+        if (lives == 1 && !hasBeenLowHP)
+        {
+            AudioSource.PlayClipAtPoint(lowHP, transform.position);
+            hasBeenLowHP = true;
+        }
     }
 
     /// <summary>
@@ -214,6 +221,7 @@ public class PlayerBehavior : MonoBehaviour
 
         // Reset player HP and model visually and internally.
         lives = 3;
+        hasBeenLowHP = false;
         this.rotPoint.GetComponent<SpriteRenderer>().enabled = true;
         this.cursor.GetComponent<SpriteRenderer>().enabled = true;
 
