@@ -45,3 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInQuestion: {fileID: 0}
+  imageHolder1: {fileID: 0}
+  imageHolder2: {fileID: 0}
+  speedUp: {fileID: 1429546610, guid: 19bde4eee0a34aa4d8321bc3dbe48f5e, type: 3}

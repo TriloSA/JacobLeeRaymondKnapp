@@ -42,6 +42,8 @@ public class PlayerBehavior : MonoBehaviour
 
     public GameObject healthUI;
 
+    public SpriteRenderer rotateRenderer;
+
     /// <summary>
     /// Set's the default spawn values upon spawn.
     /// </summary>
@@ -58,6 +60,14 @@ public class PlayerBehavior : MonoBehaviour
             xVal += -2f;
             isPlayer1 = true;
             hasPlayer1 = true;
+        }
+
+        //rotateRenderer = this.GetComponent<SpriteRenderer>();
+
+        // If you aren't player one, you're blue.
+        if (!isPlayer1)
+        {
+            rotateRenderer.color = Color.cyan;
         }
 
         // Their position is now xVal and yVal.

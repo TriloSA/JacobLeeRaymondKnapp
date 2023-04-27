@@ -20,6 +20,14 @@ public class PlayerMovement : MonoBehaviour
 {
     Vector2 rotation;
     PlayerActions pActions;
+    
+    PowerupManager pUM;
+    InputActionMap pAM;
+
+    InputActionAsset pActionInput;
+
+    InputAction rotate;
+    InputAction launch;
 
     [Header("Linkage")]
     [SerializeField] private Transform rotatePoint;
@@ -48,6 +56,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Unstick Boolean")]
     public bool onAWall;
 
+    [Header("PowerUp Booleans")]
+    public bool isSpeeding;
+
     /// <summary>
     /// On awake, link the playeractions and the "action keywords" to code
     /// variables.
@@ -57,12 +68,28 @@ public class PlayerMovement : MonoBehaviour
         // Links pActions to PlayerActions
         pActions = new PlayerActions();
 
+        pActionInput = this.GetComponent<PlayerInput>().actions;
+
+        pAM = pActionInput.FindActionMap("PlayerActionMap");
+
+        rotate = pAM.FindAction("Rotate");
+
+        launch = pAM.FindAction("Launch");
+
         // Binds the Rotation of controller to rotation (vector2)
-        pActions.PlayerActionMap.Rotate.performed += ctx => rotation =
+        rotate.performed += ctx => rotation =
         ctx.ReadValue<Vector2>();
 
         // Binds the Launch from player's action map to Launch();.
-        pActions.PlayerActionMap.Launch.performed += ctx => Launch();
+        launch.performed += ctx => Launch();
+    }
+    
+    /// <summary>
+    /// For linking purposes.
+    /// </summary>
+    private void Start()
+    {
+        pUM = GameObject.Find("GameManager").GetComponent<PowerupManager>();
     }
 
     /// <summary>
@@ -126,12 +153,10 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // uhh mr alex.
+        // Start color change.
         if (collision.gameObject.CompareTag("Powerup"))
         {
-            Debug.Log("hi i am alex koeberl, and you're watching the disney " +
-            "channel");
-            StartCoroutine(ColorChangeForTheAlpha());
+            StartCoroutine(ColorChange());
         }
 
         // If you cannot launch, stop your movement as you've likely hit a
@@ -141,8 +166,9 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(StopMovement());
         }
 
-        // If you're on a wall and hit something, you unstick.
-        if (canLaunch && onAWall || collision.gameObject.CompareTag("Platforms") && onAWall)
+        // If you're sticking on a wall and hit something, you unstick.
+        if (canLaunch && onAWall || collision.gameObject.CompareTag
+        ("Platforms") && onAWall)
         {
             transform.SetParent(null);
             onAWall = false;
@@ -174,26 +200,42 @@ public class PlayerMovement : MonoBehaviour
     /// <returns></returns>
     public IEnumerator SpeedInc(float amount, float time)
     {
+        isSpeeding = true;
         launchVelocity *= amount;
 
         yield return new WaitForSeconds(time);
 
+        Debug.Log("AAAAAA");
+        pUM.ResetIcons();
         launchVelocity /= amount;
+        isSpeeding = false;
     }
 
     //////////////////////////////////////////////////////////////////////////
     /// <summary>
-    /// For the alpha sake, this is a visual indicator of how long you got
-    /// your powerup for.
+    /// Color changes for powerups.
     /// </summary>
     /// <returns></returns>
-    public IEnumerator ColorChangeForTheAlpha()
+    public IEnumerator ColorChange()
     {
-        Debug.Log("hello my name is alexiplier");
-        colorLink.GetComponent<SpriteRenderer>().color = Color.yellow;
-        yield return new WaitForSeconds(5f);
-        Debug.Log("and welcome back to another video of five nights at " +
-        "freddys");
-        colorLink.GetComponent<SpriteRenderer>().color = Color.green;
+        // If you're playing as player 1 and you got the speed powerup
+        if (this.gameObject.GetComponent<PlayerBehavior>().isPlayer1 && 
+        isSpeeding)
+        {
+            colorLink.GetComponent<SpriteRenderer>().color = Color.yellow;
+            yield return new WaitForSeconds(5f);
+            colorLink.GetComponent<SpriteRenderer>().color = Color.green;
+        }
+
+        // If you're playing as player 2 and you got the speed powerup
+        else if (!this.gameObject.GetComponent<PlayerBehavior>().isPlayer1 && 
+        isSpeeding)
+        {
+            colorLink.GetComponent<SpriteRenderer>().color = Color.magenta;
+            yield return new WaitForSeconds(5f);
+            colorLink.GetComponent<SpriteRenderer>().color = Color.cyan;
+        }
+
+        
     }
 }

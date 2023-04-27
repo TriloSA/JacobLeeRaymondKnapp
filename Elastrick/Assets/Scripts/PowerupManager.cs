@@ -6,18 +6,25 @@
 // The script that randomizes and applies a powerup on the player who hit
 the powerup using random number generators (random.range) and enumerators.
 
-Also for the ALPHA only, changes the colors to visually show its effect in
-action.
+Changes colors whenever power ups activate.
 *****************************************************************************/
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerupManager : MonoBehaviour
 {
     private PlayerMovement pM;
+    private PlayerBehavior pB;
     public GameObject playerInQuestion;
+
+    // Holds the image for player 1 and player 2 for UI.
+    public Image imageHolder1;
+    public Image imageHolder2;
+
+    public Sprite speedUp;
 
     /// <summary>
     /// Randomizes the powerup given internally using Random.Range.
@@ -51,8 +58,20 @@ public class PowerupManager : MonoBehaviour
         switch (PickPowerup())
         {
             case 1:
+                if (playerInQuestion.GetComponent<PlayerBehavior>().isPlayer1 == true)
+                {
+                    Debug.Log("yessir ballsy");
+                    imageHolder1.sprite = speedUp;
+                }
+                else if (playerInQuestion.GetComponent<PlayerBehavior>().isPlayer1 == false)
+                {
+                    Debug.Log("yessir trallsy");
+                    imageHolder2.sprite = speedUp;
+                }
+
                 pM.StartCoroutine(pM.SpeedInc(2, 5));
                 break;
+
             case 2:
                 UpDamage(pM);
                 break;
@@ -62,7 +81,7 @@ public class PowerupManager : MonoBehaviour
         pM.hasAPowerUp = false;
 
         // FOR ALPHA: COLOR CHANGE SCRIPT
-        pM.StartCoroutine(pM.ColorChangeForTheAlpha());
+        pM.StartCoroutine(pM.ColorChange());
     }
 
     /// <summary>
@@ -73,5 +92,23 @@ public class PowerupManager : MonoBehaviour
     {
         //playerDamage++
         Debug.Log("Well, nothing happened.");
+    }
+
+    /// <summary>
+    /// Resets the icons back to be null.
+    /// </summary>
+    public void ResetIcons()
+    {
+        if (playerInQuestion.GetComponent<PlayerBehavior>().isPlayer1 == true)
+        {
+            imageHolder1.sprite = null;
+        }
+        else if (playerInQuestion.GetComponent<PlayerBehavior>().isPlayer1 == false)
+        {
+            imageHolder2.sprite = null;
+        }
+        
+        
+
     }
 }
