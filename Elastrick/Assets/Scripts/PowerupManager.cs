@@ -44,7 +44,7 @@ public class PowerupManager : MonoBehaviour
     /// active or not.
     /// </summary>
     /// <returns></returns>
-    public IEnumerator timeForRoulette()
+    public IEnumerator timeForRoulette() //THIS ONE IS FOR RANDOM.
     {
         // Recieves PowerupBehavior's reference and stores it.
         pM = playerInQuestion.GetComponent<PlayerMovement>();
@@ -60,12 +60,57 @@ public class PowerupManager : MonoBehaviour
             case 1:
                 if (playerInQuestion.GetComponent<PlayerBehavior>().isPlayer1 == true)
                 {
-                    Debug.Log("yessir ballsy");
+                    //Debug.Log("it works haha!!!11!!");
                     imageHolder1.sprite = speedUp;
                 }
                 else if (playerInQuestion.GetComponent<PlayerBehavior>().isPlayer1 == false)
                 {
-                    Debug.Log("yessir trallsy");
+                    //Debug.Log("it doesnt work haha!!!11!!");
+                    imageHolder2.sprite = speedUp;
+                }
+
+                pM.StartCoroutine(pM.SpeedInc(2, 5));
+                break;
+
+            case 2:
+                UpDamage(pM);
+                break;
+        }
+
+        // The player no longer has a powerup and can safely get a new one.
+        pM.hasAPowerUp = false;
+
+        // FOR ALPHA: COLOR CHANGE SCRIPT
+        pM.StartCoroutine(pM.ColorChange());
+    }
+
+    /// <summary>
+    /// Same thing as the other timeForRoulette but is specifically tailored for the tutorial and is specific.
+    /// </summary>
+    /// <param name="powerUp"></param>
+    /// <returns></returns>
+    public IEnumerator timeForRoulette(int powerUp) // THIS ONE IS FOR SPECIFIC. IF YOU WANT SPECIFIC, YOU CHECK THE BOX IN INSPECTOR AND GIVE IT A VALUE FOR INT.
+    {
+        // Recieves PowerupBehavior's reference and stores it.
+        pM = playerInQuestion.GetComponent<PlayerMovement>();
+        // The player cannot get another powerup while one is active.
+        pM.hasAPowerUp = true;
+
+        // Roulette time.
+        yield return new WaitForSecondsRealtime(4.25f);
+
+        // Defines which powerup is applied, AKA the magic.
+        switch (powerUp)
+        {
+            case 1:
+                if (playerInQuestion.GetComponent<PlayerBehavior>().isPlayer1 == true)
+                {
+                    //Debug.Log("it works haha!!!11!!");
+                    imageHolder1.sprite = speedUp;
+                }
+                else if (playerInQuestion.GetComponent<PlayerBehavior>().isPlayer1 == false)
+                {
+                    //Debug.Log("it doesnt work haha!!!11!!");
                     imageHolder2.sprite = speedUp;
                 }
 
