@@ -17,6 +17,9 @@ public class PowerupBehavior : MonoBehaviour
     private PlayerMovement pM;
     private PowerupManager pUM;
 
+    public bool specificPowerup;
+    public int powerUpIndex;
+
     /// <summary>
     /// Links the game manager to this script so it can pass references.
     /// </summary>
@@ -44,8 +47,16 @@ public class PowerupBehavior : MonoBehaviour
                 // The player in question is the one who collided with it.
                 pUM.playerInQuestion = collision.gameObject;
 
-                // Starts the powerup coroutine.
-                StartCoroutine(pUM.timeForRoulette());
+                if (specificPowerup)
+                {
+                    StartCoroutine(pUM.timeForRoulette(powerUpIndex));
+                }
+                else
+                {
+                    // Starts the powerup coroutine.
+                    StartCoroutine(pUM.timeForRoulette());
+                }
+                
 
                 // Visually, hides the power up.
                 GetComponent<BoxCollider2D>().enabled = false;
