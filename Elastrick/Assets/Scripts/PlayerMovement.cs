@@ -35,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Launch Check")]
     public bool canLaunch = true;
+    public float catchTime;
+    private Coroutine catchCoroutine;
 
     [Header("Moving Check")]
     public bool isMoving;
@@ -101,10 +103,22 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// On enable.
+    /// On enable. Also prevents audio listeners to multiply.
     /// </summary>
     private void OnEnable()
     {
+        int listenerCount = 0;
+
+        foreach (AudioListener a in FindObjectsOfType<AudioListener>())
+        {
+            listenerCount++;
+
+            if (listenerCount > 1)
+            {
+                a.enabled = false;
+            }
+        }
+
         pActions.PlayerActionMap.Enable();
     }
 
@@ -132,6 +146,11 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void Launch()
     {
+        if (this == null)
+        {
+            return;
+        }
+
         // Makes a raycast to check if there is something in front of the
         // player. Stores it in var h.
         var h = Physics2D.Raycast(transform.position, rotatePoint.right, 
@@ -140,11 +159,28 @@ public class PlayerMovement : MonoBehaviour
         // If you can launch and you aren't raycast colliding into anything...
         if (canLaunch && h.collider == null)
         {
+            if (catchCoroutine != null)
+            {
+                StopCoroutine(catchCoroutine);
+            }
             canLaunch = false;
             Debug.Log("Boing!");
             rb2D.AddForce(rotation * launchVelocity, ForceMode2D.Impulse);
             isMoving = true;
+
+            catchCoroutine = StartCoroutine(LaunchCatch());
         }
+    }
+
+    /// <summary>
+    /// If 9 seconds passed and you CANT launch, you can launch again. 
+    /// Anti-Safelock Measure.
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator LaunchCatch()
+    {
+        yield return new WaitForSeconds(catchTime);
+        StartCoroutine(StopMovement());
     }
 
     /// <summary>

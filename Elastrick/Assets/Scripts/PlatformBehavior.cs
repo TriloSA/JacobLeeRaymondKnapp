@@ -17,11 +17,19 @@ public class PlatformBehavior : MonoBehaviour
     public float TopY;
     public float BotY;
 
+    Rigidbody2D rB2D;
+
     public float speed = 2f;
 
     public Vector3 movement;
 
     private bool goingDown = false;
+
+
+    private void Start()
+    {
+        rB2D = GetComponent<Rigidbody2D>();
+    }
 
     /// <summary>
     /// Update is called once per frame
@@ -37,8 +45,9 @@ public class PlatformBehavior : MonoBehaviour
         //which makes the moving platform move towards the BotY value
         if(transform.position.y < TopY && goingDown == false)
         {
-            movement = Vector3.up * speed * Time.deltaTime;
-            transform.Translate(movement);
+            movement = Vector3.up * speed;
+            //transform.Translate(movement);
+            rB2D.velocity = movement;
         }
         else if(transform.position.y >= TopY)
         {
@@ -50,8 +59,9 @@ public class PlatformBehavior : MonoBehaviour
         //which makes the moving platform move towards the TopY value
         if (transform.position.y > BotY && goingDown == true)
         {
-            movement = -(Vector3.up * speed * Time.deltaTime);
-            transform.Translate(movement);
+            movement = -(Vector3.up * speed);
+            //transform.Translate(movement);
+            rB2D.velocity = movement;
         }
         else if(transform.position.y <= BotY)
         {
@@ -65,10 +75,24 @@ public class PlatformBehavior : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (!collision.gameObject.CompareTag("Player"))
+        {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+
+            foreach (Collider2D c in GetComponentsInChildren<Collider2D>())
+            {
+                Physics2D.IgnoreCollision(collision.collider, c);
+            }
+        }
+
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.transform.SetParent(transform);
+            //collision.gameObject.transform.SetParent(transform);
+            // You are now on a wall.
             collision.gameObject.GetComponent<PlayerMovement>().onAWall = true;
+
+            // You now move with the wall.
+            collision.gameObject.GetComponent<Rigidbody2D>().velocity = movement;
         }
     }
 
@@ -81,8 +105,12 @@ public class PlatformBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.transform.SetParent(null);
+            //collision.gameObject.transform.SetParent(null);
+            // You are no longer on a wall.
             collision.gameObject.GetComponent<PlayerMovement>().onAWall = false;
+
+            // You immediately slow after being pushed off the wall if you were sliding off the top of it.
+            collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }
 }
