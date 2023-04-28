@@ -17,6 +17,7 @@ public class TestQuitBox : MonoBehaviour
     /// </summary>
     public void BackToMainMenu()
     {
+        PlayerBehavior.hasPlayer1 = false;
         Debug.Log("Back");
         SceneManager.LoadScene("MainMenu");
     }
