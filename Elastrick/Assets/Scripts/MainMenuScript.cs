@@ -33,7 +33,7 @@ public class MainMenuScript : MonoBehaviour
     public void StartTutorial()
     {
         Debug.Log("Start Tutorial");
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Tutorial");
     }
 
     /// <summary>
