@@ -12,6 +12,9 @@ using UnityEngine;
 
 public class CheckpointBehavior : MonoBehaviour
 {
+    public AudioClip checkpoint;
+
+
     /// <summary>
     /// On Trigger, set the new spawn coordinate values in relation to the 
     /// coordinates of the checkpoint gameobject's. The value is stored in a 
@@ -25,6 +28,7 @@ public class CheckpointBehavior : MonoBehaviour
         {
             Debug.Log("Checkpoint Unlocked!");
 
+            AudioManager.inst.PlaySound(checkpoint);
             StartCoroutine(FlickerFlag());
 
             // Checkpoint is now no longer collidable so you can't "unlock"

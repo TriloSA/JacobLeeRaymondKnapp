@@ -61,6 +61,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("PowerUp Booleans")]
     public bool isSpeeding;
 
+    [Header("SFX")]
+    public AudioClip powerDown;
+    public AudioClip airSound;
+    public AudioClip splat;
+
     /// <summary>
     /// On awake, link the playeractions and the "action keywords" to code
     /// variables.
@@ -107,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void OnEnable()
     {
-        int listenerCount = 0;
+/*        int listenerCount = 0;
 
         foreach (AudioListener a in FindObjectsOfType<AudioListener>())
         {
@@ -117,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 a.enabled = false;
             }
-        }
+        }*/
 
         pActions.PlayerActionMap.Enable();
     }
@@ -169,6 +174,7 @@ public class PlayerMovement : MonoBehaviour
             canLaunch = false;
             Debug.Log("Boing!");
             rb2D.AddForce(rotation * launchVelocity, ForceMode2D.Impulse);
+            AudioManager.inst.PlaySound(airSound);
             isMoving = true;
 
             catchCoroutine = StartCoroutine(LaunchCatch());
@@ -203,6 +209,7 @@ public class PlayerMovement : MonoBehaviour
         if (!canLaunch && stopColl == false)
         {
             StartCoroutine(StopMovement());
+            AudioManager.inst.PlaySound(splat);
         }
 
         // If the collision game object is Wall, set the Player's parent to "Wall".
@@ -254,6 +261,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("AAAAAA");
         pUM.ResetIcons();
         launchVelocity /= amount;
+        AudioManager.inst.PlaySound(powerDown);
         isSpeeding = false;
     }
 

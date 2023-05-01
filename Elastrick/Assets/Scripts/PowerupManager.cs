@@ -25,6 +25,7 @@ public class PowerupManager : MonoBehaviour
     public Image imageHolder2;
 
     public Sprite speedUp;
+    public AudioClip rouletteSound;
 
     /// <summary>
     /// Randomizes the powerup given internally using Random.Range.
@@ -52,6 +53,7 @@ public class PowerupManager : MonoBehaviour
         pM.hasAPowerUp = true;
 
         // Roulette time.
+        AudioManager.inst.PlaySound(rouletteSound);
         yield return new WaitForSecondsRealtime(4.25f);
 
         // Defines which powerup is applied, AKA the magic.
@@ -97,6 +99,7 @@ public class PowerupManager : MonoBehaviour
         pM.hasAPowerUp = true;
 
         // Roulette time.
+        AudioManager.inst.PlaySound(rouletteSound);
         yield return new WaitForSecondsRealtime(4.25f);
 
         // Defines which powerup is applied, AKA the magic.

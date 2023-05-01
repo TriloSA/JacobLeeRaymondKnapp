@@ -99,6 +99,9 @@ MonoBehaviour:
   hasAPowerUp: 0
   onAWall: 0
   isSpeeding: 0
+  powerDown: {fileID: 8300000, guid: a666ee9bb2c97694eb27e3120d1f067e, type: 3}
+  airSound: {fileID: 8300000, guid: 36eae879f55a7564ea3b72c9299bc541, type: 3}
+  splat: {fileID: 8300000, guid: 562babbe18db8df4ab61731c8eff1f88, type: 3}
 --- !u!114 &4947812346578948687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,6 +128,7 @@ MonoBehaviour:
   rotateRenderer: {fileID: 5167592786725541946}
   playersHit: {fileID: 8300000, guid: 118de6d0eb972754d96c65c2f13ce0f8, type: 3}
   lowHP: {fileID: 8300000, guid: 4856c85d77f7d364687955bb73e8652e, type: 3}
+  hurt: {fileID: 8300000, guid: 430604b6a22f596479d4fa1f46c3ec33, type: 3}
 --- !u!114 &321621191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,7 +540,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6912071790994900860}
   - component: {fileID: 4198150062427315021}
-  - component: {fileID: 824554579107469872}
   m_Layer: 3
   m_Name: Camera
   m_TagString: Untagged
@@ -602,14 +605,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &824554579107469872
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6106702438766224636}
-  m_Enabled: 1
 --- !u!1 &8066295410364429646
 GameObject:
   m_ObjectHideFlags: 0

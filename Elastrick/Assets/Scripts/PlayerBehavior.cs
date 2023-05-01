@@ -33,6 +33,7 @@ public class PlayerBehavior : MonoBehaviour
     [Header("Determining of Player 1")]
     public bool isPlayer1 = false;
     public static bool hasPlayer1 = false;
+    public static AudioListener audioListener;
 
     [Header("Rotate Point & Cursor")]
     public GameObject rotPoint;
@@ -48,6 +49,7 @@ public class PlayerBehavior : MonoBehaviour
     [Header("SFX")]
     public AudioClip playersHit;
     public AudioClip lowHP;
+    public AudioClip hurt;
 
     /// <summary>
     /// Set's the default spawn values upon spawn.
@@ -65,11 +67,12 @@ public class PlayerBehavior : MonoBehaviour
             xVal += -2f;
             isPlayer1 = true;
             hasPlayer1 = true;
+            audioListener = FindObjectOfType<AudioListener>();
         }
 
         //rotateRenderer = this.GetComponent<SpriteRenderer>();
 
-        // If you aren't player one, you're blue.
+        // If you aren't player one, you're cyan.
         if (!isPlayer1)
         {
             rotateRenderer.color = Color.cyan;
@@ -89,7 +92,7 @@ public class PlayerBehavior : MonoBehaviour
         {
             // Player takes damage.
             lives--;
-
+            AudioManager.inst.PlaySound(hurt);
             GiveIFrames();
         }
         
@@ -104,7 +107,7 @@ public class PlayerBehavior : MonoBehaviour
 
             collision.gameObject.GetComponent<PlayerBehavior>().GiveIFrames();
 
-            AudioSource.PlayClipAtPoint(playersHit, transform.position);
+            AudioManager.inst.PlaySound(playersHit);
         }
     }
     
@@ -152,7 +155,7 @@ public class PlayerBehavior : MonoBehaviour
 
         if (lives == 1 && !hasBeenLowHP)
         {
-            AudioSource.PlayClipAtPoint(lowHP, transform.position);
+            AudioManager.inst.PlaySound(lowHP);
             hasBeenLowHP = true;
         }
     }
