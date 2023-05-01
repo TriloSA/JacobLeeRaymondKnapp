@@ -151,6 +151,9 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+        // Just in case so that the wall DOESNT TRAVEL WITH THE PLAYER LOL.
+        transform.SetParent(null);
+
         // Makes a raycast to check if there is something in front of the
         // player. Stores it in var h.
         var h = Physics2D.Raycast(transform.position, rotatePoint.right, 
@@ -202,13 +205,20 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(StopMovement());
         }
 
-        // If you're sticking on a wall and hit something, you unstick.
-        if (canLaunch && onAWall || collision.gameObject.CompareTag
-        ("Platforms") && onAWall)
+        // If the collision game object is Wall, set the Player's parent to "Wall".
+        if (LayerMask.LayerToName(collision.gameObject.layer) == "Wall")
         {
-            transform.SetParent(null);
-            onAWall = false;
+            transform.SetParent(collision.gameObject.transform);
         }
+    }
+
+    /// <summary>
+    /// Resets the player to be their own parent.
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        transform.SetParent(null);
     }
 
     /// <summary>
