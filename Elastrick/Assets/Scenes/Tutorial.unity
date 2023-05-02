@@ -1501,7 +1501,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 399144754}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 33.87999, y: -62.76, z: 0}
+  m_LocalPosition: {x: 33.87999, y: -62.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4269,6 +4269,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkpoint: {fileID: 8300000, guid: c6c65ed2cdd6e734d950ef8260de53b7, type: 3}
+  hasUnlockedP1: 0
+  hasUnlockedP2: 0
 --- !u!70 &1380360270
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5949,6 +5951,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkpoint: {fileID: 8300000, guid: c6c65ed2cdd6e734d950ef8260de53b7, type: 3}
+  hasUnlockedP1: 0
+  hasUnlockedP2: 0
 --- !u!70 &1919991795
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
