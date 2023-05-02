@@ -13,6 +13,7 @@ embedded onto the player.
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerBehavior : MonoBehaviour
 {
@@ -51,12 +52,20 @@ public class PlayerBehavior : MonoBehaviour
     public AudioClip lowHP;
     public AudioClip hurt;
 
+    [Header("Tutorial Bool")]
+    public static bool isTutorial = false;
+
     /// <summary>
     /// On Awake, start the count down, but only if there are 2 players
     /// actively in the scene.
     /// </summary>
     private void Awake()
     {
+        if (SceneManager.GetActiveScene().name == ("Tutorial"))
+        {
+            isTutorial = true;
+        }
+
         int playerCount = 0;
 
         // Grabs the player count.
@@ -67,7 +76,7 @@ public class PlayerBehavior : MonoBehaviour
 
         // If there are at least 2 players, start the countdown; the game
         // starts now!
-        if (playerCount >= 2)
+        if (playerCount >= 2 && !isTutorial)
         {
             StartCoroutine(FindObjectOfType<CountdownScript>().Countdown());
         }

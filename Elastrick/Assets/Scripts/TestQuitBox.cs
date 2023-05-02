@@ -27,6 +27,7 @@ public class TestQuitBox : MonoBehaviour
         else if (SceneManager.GetActiveScene().name == ("Tutorial"))
         {
             PlayerBehavior.hasPlayer1 = false;
+            PlayerBehavior.isTutorial = false;
             SceneManager.LoadScene("Level1");
         }
     }
