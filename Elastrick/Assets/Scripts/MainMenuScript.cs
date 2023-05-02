@@ -83,6 +83,9 @@ public class MainMenuScript : MonoBehaviour
     /// </summary>
     void Start()
     {
+        // Jacob: Resets the time scale if it was set to 0 from Level 1.
+        Time.timeScale = 1;
+
         MenuNavigation();
     }
 }
