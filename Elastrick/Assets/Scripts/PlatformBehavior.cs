@@ -23,9 +23,23 @@ public class PlatformBehavior : MonoBehaviour
 
     private bool goingDown = false;
 
+    // For a prototype system of platform movement that does not use
+    // transform.translate. Anything using newMovement is under this idea.
+    // - Jacob Lee
+    [Space]
+    private Transform nextPos;
+    public bool newMovement = false;
+    [SerializeField] private Transform posA, posB;
 
+    /// <summary>
+    /// Prototype for new movement. Does nothing currently. - Jacob Lee
+    /// </summary>
     private void Start()
     {
+        if(newMovement)
+        {
+            nextPos = posA;
+        }
     }
 
     /// <summary>
@@ -37,6 +51,27 @@ public class PlatformBehavior : MonoBehaviour
     /// </summary>
     void Update()
     {
+        // Prototype. Does nothing currently. - Jacob Lee
+        if(newMovement)
+        {
+            if (transform.position == nextPos.position && nextPos == posA)
+            {
+                nextPos = posB;
+            }
+
+            if (transform.position == nextPos.position && nextPos == posB)
+            {
+                nextPos = posA;
+            }
+
+            transform.position = Vector3.MoveTowards(transform.position, nextPos.position, speed * Time.deltaTime);
+        }
+
+        if(newMovement)
+        {
+            return;
+        }
+
         //this checks if the moving platform has reached the TopY value
         //if the platform has reached the TopY, goingDown will be set to true
         //which makes the moving platform move towards the BotY value

@@ -128,3 +128,5 @@ MonoBehaviour:
   BotY: -3
   speed: 7
   movement: {x: 0, y: 0, z: 0}
+  posA: {fileID: 0}
+  posB: {fileID: 0}

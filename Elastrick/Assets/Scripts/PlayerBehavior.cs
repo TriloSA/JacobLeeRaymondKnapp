@@ -52,6 +52,28 @@ public class PlayerBehavior : MonoBehaviour
     public AudioClip hurt;
 
     /// <summary>
+    /// On Awake, start the count down, but only if there are 2 players
+    /// actively in the scene.
+    /// </summary>
+    private void Awake()
+    {
+        int playerCount = 0;
+
+        // Grabs the player count.
+        foreach (PlayerBehavior p in FindObjectsOfType<PlayerBehavior>())
+        {
+            playerCount++;
+        }
+
+        // If there are at least 2 players, start the countdown; the game
+        // starts now!
+        if (playerCount >= 2)
+        {
+            StartCoroutine(FindObjectOfType<CountdownScript>().Countdown());
+        }
+    }
+
+    /// <summary>
     /// Set's the default spawn values upon spawn.
     /// </summary>
     public void Start()
