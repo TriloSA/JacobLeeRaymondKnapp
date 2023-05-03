@@ -41,12 +41,12 @@ public class PowerupBehavior : MonoBehaviour
         {
             pM = collision.gameObject.GetComponent<PlayerMovement>();
 
-            // If you have a powerup, you can't pick it up.
+            // If you have a powerup, you can't pick it up (Player 1).
             if (!pM.hasAPowerUp)
             {
-                // The player in question is the one who collided with it.
                 pUM.playerInQuestion = collision.gameObject;
 
+                // Specific power up for tutorial or not.
                 if (specificPowerup)
                 {
                     StartCoroutine(pUM.timeForRoulette(powerUpIndex));

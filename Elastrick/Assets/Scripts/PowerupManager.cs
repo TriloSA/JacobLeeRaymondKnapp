@@ -28,6 +28,9 @@ public class PowerupManager : MonoBehaviour
     public Sprite damageUp;
     public AudioClip rouletteSound;
 
+    //Temp Audio
+    public AudioClip tempPowerUp;
+
     /// <summary>
     /// Randomizes the powerup given internally using Random.Range.
     /// </summary>
@@ -54,11 +57,13 @@ public class PowerupManager : MonoBehaviour
         // The player cannot get another powerup while one is active.
         pM.hasAPowerUp = true;
 
-        Debug.Log(pM.hasAPowerUp);
-
         // Roulette time.
-        AudioManager.inst.PlaySound(rouletteSound);
-        yield return new WaitForSecondsRealtime(4.25f);
+
+        // Temporary Audio:
+        AudioManager.inst.PlaySound(tempPowerUp);
+
+        //AudioManager.inst.PlaySound(rouletteSound);
+        // Bugs out the system. Need FIX. -> //yield return new WaitForSecondsRealtime(4.25f);
 
         // Defines which powerup is applied, AKA the magic.
         switch (PickPowerup())
@@ -91,33 +96,41 @@ public class PowerupManager : MonoBehaviour
                 pB.StartCoroutine(pB.UpDamage(2, 5));
                 break;
         }
+        yield return null; //Bandaid to the Yield Return WaitForSeconds above.
 
         // FOR ALPHA: COLOR CHANGE SCRIPT
         pM.StartCoroutine(pM.ColorChange());
     }
+
 
     /// <summary>
     /// Same thing as the other timeForRoulette but is specifically tailored for the tutorial and is specific.
     /// </summary>
     /// <param name="powerUp"></param>
     /// <returns></returns>
-    public IEnumerator timeForRoulette(int powerUp) // THIS ONE IS FOR SPECIFIC. IF YOU WANT SPECIFIC, YOU CHECK THE BOX IN INSPECTOR AND GIVE IT A VALUE FOR INT.
+    public IEnumerator timeForRoulette(int powerUp) 
+    // THIS ONE IS FOR SPECIFIC. IF YOU WANT SPECIFIC, YOU CHECK THE BOX IN INSPECTOR AND GIVE IT A VALUE FOR INT.
     {
         // Recieves PowerupBehavior's reference and stores it.
         pM = playerInQuestion.GetComponent<PlayerMovement>();
+        pB = playerInQuestion.GetComponent<PlayerBehavior>();
         // The player cannot get another powerup while one is active.
         pM.hasAPowerUp = true;
 
         Debug.Log(pM.hasAPowerUp);
 
         // Roulette time.
-        AudioManager.inst.PlaySound(rouletteSound);
-        yield return new WaitForSecondsRealtime(4.25f);
+
+        // Temporary Audio:
+        AudioManager.inst.PlaySound(tempPowerUp);
+
+        //AudioManager.inst.PlaySound(rouletteSound);
+        // Bugs out the system. Need FIX. -> //yield return new WaitForSecondsRealtime(4.25f);
 
         // Defines which powerup is applied, AKA the magic.
         switch (powerUp)
         {
-                // If it's initial bounce power up.
+            // If it's initial bounce power up.
             case 1:
                 if (playerInQuestion.GetComponent<PlayerBehavior>().isPlayer1 == true)
                 {
@@ -131,7 +144,7 @@ public class PowerupManager : MonoBehaviour
                 pM.StartCoroutine(pM.SpeedInc(2, 5));
                 break;
 
-                // If it's damage power up.
+            // If it's damage power up.
             case 2:
                 if (playerInQuestion.GetComponent<PlayerBehavior>().isPlayer1 == true)
                 {
@@ -145,26 +158,9 @@ public class PowerupManager : MonoBehaviour
                 pB.StartCoroutine(pB.UpDamage(2, 5));
                 break;
         }
-
+        yield return null; //Bandaid to the Yield Return WaitForSeconds above.
+        
         // FOR ALPHA: COLOR CHANGE SCRIPT
         pM.StartCoroutine(pM.ColorChange());
-    }
-
-    /// <summary>
-    /// Resets the icons back to be null.
-    /// </summary>
-    public void ResetIcons()
-    {
-        if (playerInQuestion.GetComponent<PlayerBehavior>().isPlayer1 == true)
-        {
-            imageHolder1.sprite = null;
-        }
-        else if (playerInQuestion.GetComponent<PlayerBehavior>().isPlayer1 == false)
-        {
-            imageHolder2.sprite = null;
-        }
-        
-        
-
     }
 }

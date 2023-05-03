@@ -44,6 +44,7 @@ public class PlayerBehavior : MonoBehaviour
     [Header("Is Respawning Bool & Has Been Low HP Bool")]
     private bool isRespawning;
     private bool hasBeenLowHP;
+    public bool hasKilledPlayer;
 
     [Header("Rotate Object's Sprite Renderer")]
     public SpriteRenderer rotateRenderer;
@@ -54,14 +55,16 @@ public class PlayerBehavior : MonoBehaviour
     public AudioClip hurt;
     public AudioClip powerDown;
 
-    [Header("Tutorial Bool")]
+    [Header("Tutorial Bool && Powerup Bool")]
     public static bool isTutorial = false;
+    public bool hasDamagePowerup = false;
 
     [Header("Player Visualization")]
     public GameObject damageSpikes;
 
     PowerupManager pUM;
     PlayerMovement pM;
+    TutorialCombatScript tCS;
 
     /// <summary>
     /// On Awake, start the count down, but only if there are 2 players
@@ -97,6 +100,11 @@ public class PlayerBehavior : MonoBehaviour
     {
         pUM = GameObject.Find("GameManager").GetComponent<PowerupManager>();
         pM = this.gameObject.GetComponent<PlayerMovement>();
+
+        if (SceneManager.GetActiveScene().name == ("Tutorial"))
+        {
+            tCS = GameObject.Find("PlayerCombatTutorialManager").GetComponent<TutorialCombatScript>();
+        }
 
         // Default unchanged values for spawn.
         xVal = -15f;
@@ -146,13 +154,34 @@ public class PlayerBehavior : MonoBehaviour
             !collision.gameObject.GetComponent<PlayerBehavior>().isInvincible)
         {
             collision.gameObject.GetComponent<PlayerBehavior>().lives -= damage;
-
             collision.gameObject.GetComponent<PlayerBehavior>().GiveIFrames();
-
+            collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             AudioManager.inst.PlaySound(playersHit);
+
+            if (collision.gameObject.GetComponent<PlayerBehavior>().lives <= 0)
+            {
+                hasKilledPlayer = true;
+
+                if (collision.gameObject.GetComponent<PlayerBehavior>().lives > 0)
+                {
+                    hasKilledPlayer = false;
+                }
+            }
         }
     }
-    
+
+    /// <summary>
+    /// Specifically to stop sliding and movespeed loss upon player contact.
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<PlayerBehavior>().isInvincible)
+        {
+            collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
+    }
+
     /// <summary>
     /// If your lives ever drop below 0 or is equal to 0, perish.
     /// </summary>
@@ -168,6 +197,18 @@ public class PlayerBehavior : MonoBehaviour
         if (isRespawning)
         {
             this.gameObject.GetComponent<PlayerMovement>().canLaunch = false;
+        }
+
+        //Debug.Log(hasKilledPlayer);
+        //Debug.Log(tCS.hasGottenToThisPoint);
+        //Debug.Log(hasDamagePowerup);
+
+        // For tutorial purposes, makes it so the players can pass after a
+        // death has been dealt with the powerup.
+        if (hasKilledPlayer && tCS.hasGottenToThisPoint && hasDamagePowerup)
+        {
+            tCS.tutorialPlayerCombatCheck = true;
+            //Debug.Log("yes yes yes 141415");
         }
 
         ///////////////////////////////////////////////////////////////////////
@@ -308,15 +349,15 @@ public class PlayerBehavior : MonoBehaviour
     /// <returns></returns>
     public IEnumerator UpDamage(int amount, float time)
     {
-        Debug.Log("Knuckle Sandwhich!");
         damage *= amount;
         damageSpikes.SetActive(true);
+        this.hasDamagePowerup = true;
 
         yield return new WaitForSeconds(time);
 
-        pUM.ResetIcons();
         damage /= amount;
         damageSpikes.SetActive(false);
+        this.hasDamagePowerup = false;
         AudioManager.inst.PlaySound(powerDown);
 
         // The player no longer has a powerup and can safely get a new one.

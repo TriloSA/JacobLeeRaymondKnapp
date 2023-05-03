@@ -9,7 +9,7 @@ adds a force to move towards the selected direction of where the ball is
 facing, primarilly shown visually by the pointer that rotates around the
 player as a child object.
 
-Also harbors the enumerator to change colors FOR THE ALPHA. Not permanent!
+Also changes color!
 *****************************************************************************/
 
 using System.Collections;
@@ -105,6 +105,17 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         RotatePlayer();
+
+        if (this.gameObject.GetComponent<PlayerBehavior>().isPlayer1 &&
+            !this.gameObject.GetComponent<PlayerMovement>().hasAPowerUp)
+        {
+            pUM.imageHolder1.sprite = null;
+        }
+        else if (!this.gameObject.GetComponent<PlayerBehavior>().isPlayer1 &&
+            !this.gameObject.GetComponent<PlayerMovement>().hasAPowerUp)
+        {
+            pUM.imageHolder2.sprite = null;
+        }
     }
 
     /// <summary>
@@ -259,7 +270,6 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         Debug.Log("AAAAAA");
-        pUM.ResetIcons();
         launchVelocity /= amount;
         AudioManager.inst.PlaySound(powerDown);
         isSpeeding = false;

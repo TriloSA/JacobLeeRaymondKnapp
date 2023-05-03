@@ -86,4 +86,15 @@ public class CheckpointBehavior : MonoBehaviour
             new Color(255, 255, 255, 255);
         }
     }
+
+    /// <summary>
+    /// Prevents any softlocking from raycasting.
+    /// </summary>
+    private void Update()
+    {
+        if (hasUnlockedP1 & hasUnlockedP2)
+        {
+            this.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+        }
+    }
 }
