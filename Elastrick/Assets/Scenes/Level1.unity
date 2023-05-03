@@ -5143,7 +5143,7 @@ GameObject:
   - component: {fileID: 1405912923}
   - component: {fileID: 1405912922}
   - component: {fileID: 1405912921}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: AntiCheatBox
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -6560,6 +6560,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4915924774420934714, guid: 5cf4d8b6419eacd49a1e049ab2a2fe8c, type: 3}
+      propertyPath: damageUp
+      value: 
+      objectReference: {fileID: -299080460, guid: 19bde4eee0a34aa4d8321bc3dbe48f5e, type: 3}
     - target: {fileID: 4915924774420934714, guid: 5cf4d8b6419eacd49a1e049ab2a2fe8c, type: 3}
       propertyPath: imageHolder1
       value: 

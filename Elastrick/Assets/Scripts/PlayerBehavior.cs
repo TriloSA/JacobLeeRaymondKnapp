@@ -21,6 +21,7 @@ public class PlayerBehavior : MonoBehaviour
     public float xVal = -16f;
     public float yVal = -7f;
     public int lives = 3;
+    public int damage = 1;
 
     [Header ("HP UI GameObjects")]
     public GameObject threeHPValue;
@@ -51,9 +52,16 @@ public class PlayerBehavior : MonoBehaviour
     public AudioClip playersHit;
     public AudioClip lowHP;
     public AudioClip hurt;
+    public AudioClip powerDown;
 
     [Header("Tutorial Bool")]
     public static bool isTutorial = false;
+
+    [Header("Player Visualization")]
+    public GameObject damageSpikes;
+
+    PowerupManager pUM;
+    PlayerMovement pM;
 
     /// <summary>
     /// On Awake, start the count down, but only if there are 2 players
@@ -87,6 +95,9 @@ public class PlayerBehavior : MonoBehaviour
     /// </summary>
     public void Start()
     {
+        pUM = GameObject.Find("GameManager").GetComponent<PowerupManager>();
+        pM = this.gameObject.GetComponent<PlayerMovement>();
+
         // Default unchanged values for spawn.
         xVal = -15f;
         yVal = -7f;
@@ -134,7 +145,7 @@ public class PlayerBehavior : MonoBehaviour
             this.gameObject.GetComponent<PlayerMovement>().isMoving == true &&
             !collision.gameObject.GetComponent<PlayerBehavior>().isInvincible)
         {
-            collision.gameObject.GetComponent<PlayerBehavior>().lives--;
+            collision.gameObject.GetComponent<PlayerBehavior>().lives -= damage;
 
             collision.gameObject.GetComponent<PlayerBehavior>().GiveIFrames();
 
@@ -152,6 +163,11 @@ public class PlayerBehavior : MonoBehaviour
         {
             isRespawning = true;
             DieAndRespawn();
+        }
+
+        if (isRespawning)
+        {
+            this.gameObject.GetComponent<PlayerMovement>().canLaunch = false;
         }
 
         ///////////////////////////////////////////////////////////////////////
@@ -261,6 +277,7 @@ public class PlayerBehavior : MonoBehaviour
 
         // Reset player position.
         gameObject.transform.position = new Vector2(xVal, yVal);
+        this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         isRespawning = false;
 
         // PANIC FIX FOR IT IDK.
@@ -281,5 +298,28 @@ public class PlayerBehavior : MonoBehaviour
         healthUI.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         healthUI.SetActive(true);
+    }
+
+    /// <summary>
+    /// Increases the player's damage by 1, since its 1 x 2.
+    /// </summary>
+    /// <param name="amount"></param>
+    /// <param name="time"></param>
+    /// <returns></returns>
+    public IEnumerator UpDamage(int amount, float time)
+    {
+        Debug.Log("Knuckle Sandwhich!");
+        damage *= amount;
+        damageSpikes.SetActive(true);
+
+        yield return new WaitForSeconds(time);
+
+        pUM.ResetIcons();
+        damage /= amount;
+        damageSpikes.SetActive(false);
+        AudioManager.inst.PlaySound(powerDown);
+
+        // The player no longer has a powerup and can safely get a new one.
+        pM.hasAPowerUp = false;
     }
 }

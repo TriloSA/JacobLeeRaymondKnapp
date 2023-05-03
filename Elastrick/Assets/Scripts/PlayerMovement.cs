@@ -263,6 +263,9 @@ public class PlayerMovement : MonoBehaviour
         launchVelocity /= amount;
         AudioManager.inst.PlaySound(powerDown);
         isSpeeding = false;
+
+        // The player no longer has a powerup and can safely get a new one.
+        hasAPowerUp = false;
     }
 
     //////////////////////////////////////////////////////////////////////////

@@ -25,6 +25,7 @@ public class PowerupManager : MonoBehaviour
     public Image imageHolder2;
 
     public Sprite speedUp;
+    public Sprite damageUp;
     public AudioClip rouletteSound;
 
     /// <summary>
@@ -33,8 +34,8 @@ public class PowerupManager : MonoBehaviour
     /// <returns></returns>
     public int PickPowerup()
     {
-        // Currently only allows the speed to be a possible powerup.
-        return Random.Range(1, 2);
+        // Currently only allows the 2 possible powerups.
+        return Random.Range(1, 3);
     }
 
     /// <summary>
@@ -47,10 +48,13 @@ public class PowerupManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator timeForRoulette() //THIS ONE IS FOR RANDOM.
     {
-        // Recieves PowerupBehavior's reference and stores it.
+        // Recieves Players's reference and stores it.
         pM = playerInQuestion.GetComponent<PlayerMovement>();
+        pB = playerInQuestion.GetComponent<PlayerBehavior>();
         // The player cannot get another powerup while one is active.
         pM.hasAPowerUp = true;
+
+        Debug.Log(pM.hasAPowerUp);
 
         // Roulette time.
         AudioManager.inst.PlaySound(rouletteSound);
@@ -59,28 +63,34 @@ public class PowerupManager : MonoBehaviour
         // Defines which powerup is applied, AKA the magic.
         switch (PickPowerup())
         {
+            // If it's initial bounce power up.
             case 1:
                 if (playerInQuestion.GetComponent<PlayerBehavior>().isPlayer1 == true)
                 {
-                    //Debug.Log("it works haha!!!11!!");
                     imageHolder1.sprite = speedUp;
                 }
                 else if (playerInQuestion.GetComponent<PlayerBehavior>().isPlayer1 == false)
                 {
-                    //Debug.Log("it doesnt work haha!!!11!!");
                     imageHolder2.sprite = speedUp;
                 }
 
                 pM.StartCoroutine(pM.SpeedInc(2, 5));
                 break;
 
+            // If it's damage power up.
             case 2:
-                UpDamage(pM);
+                if (playerInQuestion.GetComponent<PlayerBehavior>().isPlayer1 == true)
+                {
+                    imageHolder1.sprite = damageUp;
+                }
+                else if (playerInQuestion.GetComponent<PlayerBehavior>().isPlayer1 == false)
+                {
+                    imageHolder2.sprite = damageUp;
+                }
+
+                pB.StartCoroutine(pB.UpDamage(2, 5));
                 break;
         }
-
-        // The player no longer has a powerup and can safely get a new one.
-        pM.hasAPowerUp = false;
 
         // FOR ALPHA: COLOR CHANGE SCRIPT
         pM.StartCoroutine(pM.ColorChange());
@@ -98,6 +108,8 @@ public class PowerupManager : MonoBehaviour
         // The player cannot get another powerup while one is active.
         pM.hasAPowerUp = true;
 
+        Debug.Log(pM.hasAPowerUp);
+
         // Roulette time.
         AudioManager.inst.PlaySound(rouletteSound);
         yield return new WaitForSecondsRealtime(4.25f);
@@ -105,41 +117,37 @@ public class PowerupManager : MonoBehaviour
         // Defines which powerup is applied, AKA the magic.
         switch (powerUp)
         {
+                // If it's initial bounce power up.
             case 1:
                 if (playerInQuestion.GetComponent<PlayerBehavior>().isPlayer1 == true)
                 {
-                    //Debug.Log("it works haha!!!11!!");
                     imageHolder1.sprite = speedUp;
                 }
                 else if (playerInQuestion.GetComponent<PlayerBehavior>().isPlayer1 == false)
                 {
-                    //Debug.Log("it doesnt work haha!!!11!!");
                     imageHolder2.sprite = speedUp;
                 }
 
                 pM.StartCoroutine(pM.SpeedInc(2, 5));
                 break;
 
+                // If it's damage power up.
             case 2:
-                UpDamage(pM);
+                if (playerInQuestion.GetComponent<PlayerBehavior>().isPlayer1 == true)
+                {
+                    imageHolder1.sprite = damageUp;
+                }
+                else if (playerInQuestion.GetComponent<PlayerBehavior>().isPlayer1 == false)
+                {
+                    imageHolder2.sprite = damageUp;
+                }
+
+                pB.StartCoroutine(pB.UpDamage(2, 5));
                 break;
         }
 
-        // The player no longer has a powerup and can safely get a new one.
-        pM.hasAPowerUp = false;
-
         // FOR ALPHA: COLOR CHANGE SCRIPT
         pM.StartCoroutine(pM.ColorChange());
-    }
-
-    /// <summary>
-    /// not functional at the moment.
-    /// </summary>
-    /// <param name="pm"></param>
-    private void UpDamage(PlayerMovement pm)
-    {
-        //playerDamage++
-        Debug.Log("Well, nothing happened.");
     }
 
     /// <summary>
