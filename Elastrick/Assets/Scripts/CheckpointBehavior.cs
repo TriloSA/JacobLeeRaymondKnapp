@@ -45,6 +45,13 @@ public class CheckpointBehavior : MonoBehaviour
 
                 AudioManager.inst.PlaySound(checkpoint);
                 StartCoroutine(FlickerFlag());
+
+                // Value X
+                collision.gameObject.GetComponent<PlayerBehavior>().xVal =
+                newSpawn.x;
+                // Value Y
+                collision.gameObject.GetComponent<PlayerBehavior>().yVal =
+                newSpawn.y;
             }
             else if (!collision.gameObject.GetComponent<PlayerBehavior>().isPlayer1 && !hasUnlockedP2)
             {
@@ -57,14 +64,14 @@ public class CheckpointBehavior : MonoBehaviour
 
                 AudioManager.inst.PlaySound(checkpoint);
                 StartCoroutine(FlickerFlag());
-            }
 
-            // Value X
-            collision.gameObject.GetComponent<PlayerBehavior>().xVal = 
-            newSpawn.x;
-            // Value Y
-            collision.gameObject.GetComponent<PlayerBehavior>().yVal = 
-            newSpawn.y;
+                // Value X
+                collision.gameObject.GetComponent<PlayerBehavior>().xVal =
+                newSpawn.x;
+                // Value Y
+                collision.gameObject.GetComponent<PlayerBehavior>().yVal =
+                newSpawn.y;
+            }        
         }
 
         /// <summary>

@@ -173,7 +173,9 @@ public class PlayerMovement : MonoBehaviour
         // Makes a raycast to check if there is something in front of the
         // player. Stores it in var h.
         var h = Physics2D.Raycast(transform.position, rotatePoint.right, 
-        1f, ~LayerMask.GetMask("Player"));
+        1f, ~LayerMask.GetMask("Player"), ~LayerMask.GetMask("Checkpoint"), ~LayerMask.GetMask("Powerup"));
+
+        Debug.Log(h);
 
         // If you can launch and you aren't raycast colliding into anything...
         if (canLaunch && h.collider == null)

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2080106873458312567}
   - component: {fileID: 2080106873458312566}
   - component: {fileID: 2080106873458312569}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Powerup 1
   m_TagString: Powerup
   m_Icon: {fileID: 0}
@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c4eae77d4a15734f914b1fa20ffa454, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  specificPowerup: 0
+  powerUpIndex: 0
 --- !u!61 &2080106873458312569
 BoxCollider2D:
   m_ObjectHideFlags: 0

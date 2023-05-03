@@ -92,7 +92,7 @@ MonoBehaviour:
   rotatePoint: {fileID: 8046435611626986028}
   rb2D: {fileID: 2203061072917853043}
   canLaunch: 1
-  catchTime: 5
+  catchTime: 3.5
   isMoving: 0
   launchVelocity: 15
   colorLink: {fileID: 5087738146429223433}
