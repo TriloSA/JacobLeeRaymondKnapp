@@ -79,7 +79,7 @@ public class PowerupManager : MonoBehaviour
                     imageHolder2.sprite = speedUp;
                 }
 
-                pM.StartCoroutine(pM.SpeedInc(2, 5));
+                pM.StartCoroutine(pM.SpeedInc(2, 6));
                 break;
 
             // If it's damage power up.
@@ -93,7 +93,7 @@ public class PowerupManager : MonoBehaviour
                     imageHolder2.sprite = damageUp;
                 }
 
-                pB.StartCoroutine(pB.UpDamage(2, 5));
+                pB.StartCoroutine(pB.UpDamage(2, 8));
                 break;
         }
         yield return null; //Bandaid to the Yield Return WaitForSeconds above.
