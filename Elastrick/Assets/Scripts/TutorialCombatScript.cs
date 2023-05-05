@@ -29,7 +29,7 @@ public class TutorialCombatScript : MonoBehaviour
         {
             hasGottenToThisPoint = true;
             checkBox.GetComponent<BoxCollider2D>().enabled = false;
-            Debug.Log("tasktask123");
+            //Debug.Log("tasktask123");
         }
     }
 

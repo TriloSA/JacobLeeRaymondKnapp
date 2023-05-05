@@ -155,17 +155,12 @@ public class PlayerBehavior : MonoBehaviour
         {
             collision.gameObject.GetComponent<PlayerBehavior>().lives -= damage;
             collision.gameObject.GetComponent<PlayerBehavior>().GiveIFrames();
-            collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            //collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             AudioManager.inst.PlaySound(playersHit);
 
-            if (collision.gameObject.GetComponent<PlayerBehavior>().lives <= 0)
+            if (collision.gameObject.GetComponent<PlayerBehavior>().lives <= 0 && tCS.hasGottenToThisPoint)
             {
                 hasKilledPlayer = true;
-
-                if (collision.gameObject.GetComponent<PlayerBehavior>().lives > 0)
-                {
-                    hasKilledPlayer = false;
-                }
             }
         }
     }
@@ -178,8 +173,19 @@ public class PlayerBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<PlayerBehavior>().isInvincible)
         {
-            collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            StartCoroutine(HaltMomentum(collision.gameObject.GetComponent<Rigidbody2D>()));
         }
+    }
+
+    /// <summary>
+    /// Stops the sliding after a second upon player v. player contact.
+    /// </summary>
+    /// <param name="rb"></param>
+    /// <returns></returns>
+    private IEnumerator HaltMomentum(Rigidbody2D rb)
+    {
+        yield return new WaitForSeconds(1f);
+        rb.velocity = Vector2.zero;
     }
 
     /// <summary>
