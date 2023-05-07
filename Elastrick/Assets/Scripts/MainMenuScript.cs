@@ -1,7 +1,7 @@
 /*****************************************************************************
 // File Name :         MainMenuScript.cs
 // Author :            Raymond Knapp
-// Creation Date :     April 13th, 2023
+// Creation Date :     May 7th, 2023
 //
 // This script for the main menu holds functions for the buttons located in the 
 // main menu scene. the code written below holds a few functions. The Main function
@@ -17,15 +17,20 @@ using UnityEngine.EventSystems;
 
 public class MainMenuScript : MonoBehaviour
 {
-    //this allows the code to recognize when the Main Menu and the Level Menu
+    //this allows the code to recognize when the Main Menu, Level Menu, or HTPMenu
     //are active, or inactive
     public GameObject mainMenu;
     public GameObject controlsMenu;
+    public GameObject htpMenu;
 
-    //this allows the code to recognize which button gets highlighted when the 
-    //Main Menu or Level Menu is active or inactive
+    //this allows the code to recognize which button gets highlighted when any 
+    //of the menus are active or inactive
     public GameObject playButton;
-    public GameObject backButton;
+    public GameObject controlsBackButton;
+    public GameObject powerupsBackButton;
+    public GameObject obstaclesBackButton;
+    public GameObject HTPBackButton;
+    public GameObject controlsButton;
 
     /// <summary>
     ///  When Tutorial Button is clicked, loads the Tutorial Level
@@ -55,19 +60,69 @@ public class MainMenuScript : MonoBehaviour
     }
 
     /// <summary>
-    /// this function does not matter with the current state of the project
-    /// this function will be used to help the controller recognize which button 
-    /// to highlight once we add more layers to the main menu
-    /// (for example, an options menu and credits menu)
+    /// this function sets the selected gameObject in the HowToPay to the controlsButton
     /// </summary>
     public void ControlsOff()
     {
         EventSystem.current.SetSelectedGameObject(playButton);
     }
 
+    /// <summary>
+    /// this function sets the selected gameObject in the ControlsMenu to the backButton
+    /// </summary>
     public void ControlsOn()
     {
-        EventSystem.current.SetSelectedGameObject(backButton);
+        EventSystem.current.SetSelectedGameObject(controlsBackButton);
+    }
+
+    /// <summary>
+    /// this function sets the selected gameObject in the HowToPlayMenu to the controlsButton
+    /// </summary>
+    public void HowToPlayOn()
+    {
+        EventSystem.current.SetSelectedGameObject(controlsButton);
+    }
+
+    /// <summary>
+    /// this function sets the selected gameObject in the MainMenu to the playButton
+    /// </summary>
+    public void HowToPlayOff()
+    {
+        EventSystem.current.SetSelectedGameObject(playButton);
+    }
+
+    /// <summary>
+    /// this function sets the selected gameObject in the PowerUpMenu to the 
+    /// backButton associated with the PowerUpMenu
+    /// </summary>
+    public void PowerUpsOn()
+    {
+        EventSystem.current.SetSelectedGameObject(powerupsBackButton);
+    }
+
+    /// <summary>
+    /// this function sets the selected gameObject in the HowToPlayMenu to the controlsButton
+    /// </summary>
+    public void PowerUpsOff()
+    {
+        EventSystem.current.SetSelectedGameObject(controlsButton);
+    }
+
+    /// <summary>
+    /// this function sets the selected gameObject in the ObstaclesMenu to the 
+    /// backButton associated with the ObstaclesMenu
+    /// </summary>
+    public void ObstaclesOn()
+    {
+        EventSystem.current.SetSelectedGameObject(obstaclesBackButton);
+    }
+
+    /// <summary>
+    /// this function sets the selected gameObject in the HowToPlayMenu to the controlsButton
+    /// </summary>
+    public void ObstaclesOff()
+    {
+        EventSystem.current.SetSelectedGameObject(controlsButton);
     }
 
     /// <summary>
