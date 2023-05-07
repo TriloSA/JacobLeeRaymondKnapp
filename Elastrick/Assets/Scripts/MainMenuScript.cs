@@ -20,12 +20,12 @@ public class MainMenuScript : MonoBehaviour
     //this allows the code to recognize when the Main Menu and the Level Menu
     //are active, or inactive
     public GameObject mainMenu;
-    public GameObject levelMenu;
+    public GameObject controlsMenu;
 
     //this allows the code to recognize which button gets highlighted when the 
     //Main Menu or Level Menu is active or inactive
     public GameObject playButton;
-    public GameObject tutorialButton;
+    public GameObject backButton;
 
     /// <summary>
     ///  When Tutorial Button is clicked, loads the Tutorial Level
@@ -60,20 +60,14 @@ public class MainMenuScript : MonoBehaviour
     /// to highlight once we add more layers to the main menu
     /// (for example, an options menu and credits menu)
     /// </summary>
-    public void MenuNavigation()
+    public void ControlsOff()
     {
-        if (!mainMenu.activeInHierarchy)
-        {
-            EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(playButton);
+    }
 
-            EventSystem.current.SetSelectedGameObject(tutorialButton);
-        }
-        else if (mainMenu.activeInHierarchy)
-        {
-            EventSystem.current.SetSelectedGameObject(null);
-
-            EventSystem.current.SetSelectedGameObject(playButton);
-        }
+    public void ControlsOn()
+    {
+        EventSystem.current.SetSelectedGameObject(backButton);
     }
 
     /// <summary>
@@ -86,6 +80,6 @@ public class MainMenuScript : MonoBehaviour
         // Jacob: Resets the time scale if it was set to 0 from Level 1.
         Time.timeScale = 1;
 
-        MenuNavigation();
+        ControlsOff();
     }
 }
