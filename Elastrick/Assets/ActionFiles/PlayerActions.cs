@@ -62,6 +62,15 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""487e2271-16af-4c4c-bd99-847c83d1b0a9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -108,6 +117,17 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                     ""action"": ""RotatePowerUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f4767ed0-76b7-44ff-8bbb-6c2f2191068e"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -150,6 +170,15 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""190a8533-2bd0-43be-b962-f7d4559235a4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -194,6 +223,17 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""RotatePowerUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""447ac25a-cce1-4ba1-868e-897f53b86622"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -276,12 +316,14 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
         m_PlayerActionMap_Launch = m_PlayerActionMap.FindAction("Launch", throwIfNotFound: true);
         m_PlayerActionMap_UsePowerUp = m_PlayerActionMap.FindAction("UsePowerUp", throwIfNotFound: true);
         m_PlayerActionMap_RotatePowerUp = m_PlayerActionMap.FindAction("RotatePowerUp", throwIfNotFound: true);
+        m_PlayerActionMap_Pause = m_PlayerActionMap.FindAction("Pause", throwIfNotFound: true);
         // PlayerActionMap1
         m_PlayerActionMap1 = asset.FindActionMap("PlayerActionMap1", throwIfNotFound: true);
         m_PlayerActionMap1_Rotate = m_PlayerActionMap1.FindAction("Rotate", throwIfNotFound: true);
         m_PlayerActionMap1_Launch = m_PlayerActionMap1.FindAction("Launch", throwIfNotFound: true);
         m_PlayerActionMap1_UsePowerUp = m_PlayerActionMap1.FindAction("UsePowerUp", throwIfNotFound: true);
         m_PlayerActionMap1_RotatePowerUp = m_PlayerActionMap1.FindAction("RotatePowerUp", throwIfNotFound: true);
+        m_PlayerActionMap1_Pause = m_PlayerActionMap1.FindAction("Pause", throwIfNotFound: true);
         // MenuNavigation
         m_MenuNavigation = asset.FindActionMap("MenuNavigation", throwIfNotFound: true);
         m_MenuNavigation_Up = m_MenuNavigation.FindAction("Up", throwIfNotFound: true);
@@ -350,6 +392,7 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActionMap_Launch;
     private readonly InputAction m_PlayerActionMap_UsePowerUp;
     private readonly InputAction m_PlayerActionMap_RotatePowerUp;
+    private readonly InputAction m_PlayerActionMap_Pause;
     public struct PlayerActionMapActions
     {
         private @PlayerActions m_Wrapper;
@@ -358,6 +401,7 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
         public InputAction @Launch => m_Wrapper.m_PlayerActionMap_Launch;
         public InputAction @UsePowerUp => m_Wrapper.m_PlayerActionMap_UsePowerUp;
         public InputAction @RotatePowerUp => m_Wrapper.m_PlayerActionMap_RotatePowerUp;
+        public InputAction @Pause => m_Wrapper.m_PlayerActionMap_Pause;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -379,6 +423,9 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                 @RotatePowerUp.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnRotatePowerUp;
                 @RotatePowerUp.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnRotatePowerUp;
                 @RotatePowerUp.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnRotatePowerUp;
+                @Pause.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -395,6 +442,9 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                 @RotatePowerUp.started += instance.OnRotatePowerUp;
                 @RotatePowerUp.performed += instance.OnRotatePowerUp;
                 @RotatePowerUp.canceled += instance.OnRotatePowerUp;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -407,6 +457,7 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActionMap1_Launch;
     private readonly InputAction m_PlayerActionMap1_UsePowerUp;
     private readonly InputAction m_PlayerActionMap1_RotatePowerUp;
+    private readonly InputAction m_PlayerActionMap1_Pause;
     public struct PlayerActionMap1Actions
     {
         private @PlayerActions m_Wrapper;
@@ -415,6 +466,7 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
         public InputAction @Launch => m_Wrapper.m_PlayerActionMap1_Launch;
         public InputAction @UsePowerUp => m_Wrapper.m_PlayerActionMap1_UsePowerUp;
         public InputAction @RotatePowerUp => m_Wrapper.m_PlayerActionMap1_RotatePowerUp;
+        public InputAction @Pause => m_Wrapper.m_PlayerActionMap1_Pause;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -436,6 +488,9 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                 @RotatePowerUp.started -= m_Wrapper.m_PlayerActionMap1ActionsCallbackInterface.OnRotatePowerUp;
                 @RotatePowerUp.performed -= m_Wrapper.m_PlayerActionMap1ActionsCallbackInterface.OnRotatePowerUp;
                 @RotatePowerUp.canceled -= m_Wrapper.m_PlayerActionMap1ActionsCallbackInterface.OnRotatePowerUp;
+                @Pause.started -= m_Wrapper.m_PlayerActionMap1ActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionMap1ActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionMap1ActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerActionMap1ActionsCallbackInterface = instance;
             if (instance != null)
@@ -452,6 +507,9 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                 @RotatePowerUp.started += instance.OnRotatePowerUp;
                 @RotatePowerUp.performed += instance.OnRotatePowerUp;
                 @RotatePowerUp.canceled += instance.OnRotatePowerUp;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -511,6 +569,7 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
         void OnLaunch(InputAction.CallbackContext context);
         void OnUsePowerUp(InputAction.CallbackContext context);
         void OnRotatePowerUp(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IPlayerActionMap1Actions
     {
@@ -518,6 +577,7 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
         void OnLaunch(InputAction.CallbackContext context);
         void OnUsePowerUp(InputAction.CallbackContext context);
         void OnRotatePowerUp(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IMenuNavigationActions
     {

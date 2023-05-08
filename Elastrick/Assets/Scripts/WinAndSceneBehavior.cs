@@ -24,7 +24,7 @@ public class WinAndSceneBehavior : MonoBehaviour
     /// </summary>
     public void SceneChange()
     {
-        // If it's level 1, go to main menu. If it's Tutorial, go to Level 1.
+        // If it's level 1, go to main menu as well as if it's Tutorial.
         if (SceneManager.GetActiveScene().name == ("Level1"))
         {
             PlayerBehavior.hasPlayer1 = false;
@@ -35,7 +35,7 @@ public class WinAndSceneBehavior : MonoBehaviour
         {
             PlayerBehavior.hasPlayer1 = false;
             PlayerBehavior.isTutorial = false;
-            SceneManager.LoadScene("Level1");
+            SceneManager.LoadScene("MainMenu");
         }
     }
 

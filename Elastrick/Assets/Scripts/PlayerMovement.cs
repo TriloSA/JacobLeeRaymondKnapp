@@ -16,6 +16,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 public class PlayerMovement : MonoBehaviour
 {
     Vector2 rotation;
@@ -28,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
 
     InputAction rotate;
     InputAction launch;
+    InputAction pause;
+    public static GameObject pauseObject;
 
     [Header("Linkage")]
     [SerializeField] private Transform rotatePoint;
@@ -66,6 +69,13 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip airSound;
     public AudioClip splat;
 
+    [Header("UI")]
+    public static GameObject powerupBackground1;
+    public static GameObject powerupBackground2;
+    public static GameObject resumeButton;
+    public bool shouldReOpenPauseMenu = false;
+    PauseMenu pauseMenu;
+
     /// <summary>
     /// On awake, link the playeractions and the "action keywords" to code
     /// variables.
@@ -89,6 +99,27 @@ public class PlayerMovement : MonoBehaviour
 
         // Binds the Launch from player's action map to Launch();.
         launch.performed += ctx => Launch();
+
+        powerupBackground1 = GameObject.Find("VisualBorderPowerup1");
+        powerupBackground2 = GameObject.Find("VisualBorderPowerup2");
+
+        if (pauseObject == null)
+        {
+            pauseObject = GameObject.Find("Pause");
+        }
+
+        if (powerupBackground1 == null)
+        {
+            powerupBackground1 = GameObject.Find("VisualBorderPowerup1");
+        }
+
+        if (powerupBackground2 == null)
+        {
+            powerupBackground2 = GameObject.Find("VisualBorderPowerup2");
+        }
+
+        pause = pAM.FindAction("Pause");
+        pause.performed += ctx => Pause();
     }
     
     /// <summary>
@@ -97,6 +128,8 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         pUM = GameObject.Find("GameManager").GetComponent<PowerupManager>();
+
+        pauseMenu = GameObject.FindObjectOfType<PauseMenu>();
     }
 
     /// <summary>
@@ -116,6 +149,23 @@ public class PlayerMovement : MonoBehaviour
         {
             pUM.imageHolder2.sprite = null;
         }
+    }
+
+
+    /// <summary>
+    /// Does nothing currently.
+    /// </summary>
+    private void FixedUpdate()
+    {
+       /* if (pauseObject != null && pauseObject.activeSelf)
+        {
+            pauseObject = GameObject.Find("Pause");
+
+        }*//* if (pauseObject != null && pauseObject.activeSelf)
+        {
+            pauseObject = GameObject.Find("Pause");
+
+        }*/
     }
 
     /// <summary>
@@ -306,5 +356,47 @@ public class PlayerMovement : MonoBehaviour
         }
 
         
+    }
+
+    /// <summary>
+    /// Pause Menu Code. Stops the time of the world as well. This one is
+    /// particularly better for deactivating.
+    /// </summary>
+    public void Pause()
+    {/*
+        // If the Pause Object is already active, it'll reset and resume!
+        if (pauseObject != null && pauseObject.activeSelf)
+        {
+            pauseObject.SetActive(false);
+            Time.timeScale = 1;
+            powerupBackground1.SetActive(true);
+            powerupBackground2.SetActive(true);
+
+        }
+        // If the Pause Object is not already active, it'll activate and pause!
+        else */if(pauseObject != null && !pauseObject.activeSelf)
+        {
+            if (!shouldReOpenPauseMenu)
+            {
+                pauseMenu.returnToMainMenuButton.SetActive(true);
+                pauseObject.transform.position = new Vector3(366,
+                pauseObject.transform.position.y,
+                pauseObject.transform.position.z);
+                shouldReOpenPauseMenu = true;
+            }
+
+            pauseObject.SetActive(true);
+            Time.timeScale = 0;
+            if(resumeButton == null)
+            {
+                resumeButton = GameObject.Find("ReturnToGameButton");
+            }
+            powerupBackground1.SetActive(false);
+            powerupBackground2.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(resumeButton);
+            
+        }
+
+
     }
 }
